@@ -37,7 +37,7 @@ export async function translate(text, from, to, options = {}) {
 
     let { apiKey, stream, promptList, requestPath } = config;
     if (!requestPath) {
-        requestPath = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash';
+        requestPath = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash';
     }
     if (!/https?:\/\/.+/.test(requestPath)) {
         requestPath = `https://${requestPath}`;
