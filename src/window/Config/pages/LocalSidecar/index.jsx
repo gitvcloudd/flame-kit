@@ -660,10 +660,10 @@ export default function LocalSidecar() {
                     <div className='config-item'>
                         <div>
                             <h3 className='text-sm'>
-                                {t('config.onnx_stt.startup.enable', { defaultValue: 'Start when open Transkit' })}
+                                {t('config.onnx_stt.startup.enable', { defaultValue: 'Start when open FlameKit' })}
                             </h3>
                             <p className='text-xs text-default-400'>
-                                {t('config.onnx_stt.startup.enable_hint', { defaultValue: 'Automatically start the ONNX server when Transkit launches if a downloaded model is available.' })}
+                                {t('config.onnx_stt.startup.enable_hint', { defaultValue: 'Automatically start the ONNX server when FlameKit launches if a downloaded model is available.' })}
                             </p>
                         </div>
                         <Switch
@@ -1014,7 +1014,7 @@ export default function LocalSidecar() {
                         <div>
                             <h3 className='text-sm'>{t('config.local_sidecar.startup.enable', { defaultValue: 'Enable Local Model' })}</h3>
                             <p className='text-xs text-default-400'>
-                                {t('config.local_sidecar.startup.enable_hint', { defaultValue: 'Start the inference server when Transkit launches' })}
+                                {t('config.local_sidecar.startup.enable_hint', { defaultValue: 'Start the inference server when FlameKit launches' })}
                             </p>
                         </div>
                         <Switch isSelected={!!enabled} isDisabled={!setupStatus?.ready} onValueChange={handleEnabledChange} />

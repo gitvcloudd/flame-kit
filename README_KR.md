@@ -1,8 +1,8 @@
-# TransKit Desktop
+# FlameKit Desktop
 
-TransKit Desktop은 Windows, macOS, Linux를 지원하는 크로스플랫폼 번역, OCR, 실시간 모니터, TTS 앱입니다.
+FlameKit Desktop은 Windows, macOS, Linux를 지원하는 크로스플랫폼 번역, OCR, 실시간 모니터, TTS 앱입니다.
 
-이 프로젝트는 [Pot Desktop](https://github.com/pot-app/pot-desktop) 포크이며, GPL-3.0-only 라이선스로 배포됩니다.
+이 프로젝트는 [TransKit](https://github.com/transkit-app/transkit-desktop) 포크이며, TransKit은 [Pot Desktop](https://github.com/pot-app/pot-desktop) 포크입니다., GPL-3.0-only 라이선스로 배포됩니다.
 
 <div align="center">
 
@@ -22,7 +22,7 @@ TransKit Desktop은 Windows, macOS, Linux를 지원하는 크로스플랫폼 번
 
 - [사용법](#사용법)
 - [키보드 단축키](#키보드-단축키)
-- [TransKit의 신규 기능](#transkit의-신규-기능)
+- [FlameKit의 신규 기능](#flamekit의-신규-기능)
 - [설치](#설치)
 - [소스에서 빌드](#소스에서-빌드)
 - [새 버전 릴리스 (전체 플랫폼)](#새-버전-릴리스-전체-플랫폼)
@@ -64,9 +64,9 @@ TransKit Desktop은 Windows, macOS, Linux를 지원하는 크로스플랫폼 번
 
 `Ctrl+Alt+` 접두사는 Windows, macOS, Linux 어디서도 시스템이 예약하지 않은 조합입니다. `Ctrl+Alt+Del`, `Ctrl+Alt+T`(Linux 터미널), `Ctrl+Alt+L`(Linux 화면 잠금), 그리고 브라우저 / IDE에서 자주 쓰이는 `Ctrl+Shift+I`, `Ctrl+Shift+R`, `` Ctrl+` `` 등과의 충돌을 모두 피했습니다.
 
-## TransKit의 신규 기능
+## FlameKit의 신규 기능
 
-상위 Pot 대비, TransKit은 실시간/AI 워크플로를 크게 확장했습니다.
+상위 Pot 대비, FlameKit은 실시간/AI 워크플로를 크게 확장했습니다.
 
 ### Realtime Monitor
 
@@ -88,36 +88,7 @@ TransKit Desktop은 Windows, macOS, Linux를 지원하는 크로스플랫폼 번
 
 ## 설치
 
-Release 페이지: <https://github.com/transkit-app/transkit-desktop/releases/latest>
-
-### Windows
-
-1. Releases에서 최신 `.exe` 설치 파일을 다운로드합니다.
-2. 아키텍처에 맞는 파일을 선택합니다.
-   - x64: `TransKit_{version}_x64-setup.exe`
-   - x86: `TransKit_{version}_x86-setup.exe`
-   - arm64: `TransKit_{version}_arm64-setup.exe`
-3. 설치 파일을 실행합니다.
-
-WebView2가 없는 환경에서는 다음 버전을 사용하세요.
-
-- `TransKit_{version}_{arch}_fix_webview2_runtime-setup.exe`
-
-### macOS
-
-1. Releases에서 최신 `.dmg`를 다운로드합니다.
-2. 아키텍처에 맞는 파일을 선택합니다.
-   - Apple Silicon: `TransKit_{version}_aarch64.dmg`
-   - Intel: `TransKit_{version}_x64.dmg`
-3. 열어서 설치합니다.
-
-### Linux
-
-1. 아키텍처에 맞는 패키지를 Releases에서 다운로드합니다.
-2. CI 산출물 포맷:
-   - `.deb`
-   - `.rpm`
-   - `.AppImage` (x86_64)
+FlameKit은 아직 설치 패키지를 제공하지 않습니다. 사용해 보려면 소스에서 빌드하세요([소스에서 빌드](#소스에서-빌드) 참고).
 
 ## 소스에서 빌드
 

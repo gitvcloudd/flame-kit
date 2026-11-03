@@ -208,7 +208,7 @@
           "tts_playback_rate": "Base Playback Speed",
           "tts_playback_rate_hint": "When the queue has backlog, speed increases automatically (×1.5 / ×2.0 / ×2.5 of this base value).",
           "tts_edge_builtin": "Built-in",
-          "tts_edge_builtin_hint": "No server required — runs directly inside Transkit",
+          "tts_edge_builtin_hint": "No server required — runs directly inside FlameKit",
           "tts_edge_voice": "Voice",
           "tts_edge_rate": "Rate (e.g. +0%, +20%, -10%)",
           "tts_edge_pitch": "Pitch (e.g. +0Hz, +5Hz, -5Hz)",
@@ -241,6 +241,10 @@
         "least": "Please keep at least one",
         "add_builtin_service": "Add Builtin Service",
         "add_external_service": "Add Extension",
+        "group_free": "Free",
+        "group_key": "Requires API key",
+        "group_local": "Runs locally",
+        "group_other": "Other",
         "add_service": "Add Service",
         "test_failed": "Test Failed",
         "install_plugin": "Install Plugin",
@@ -259,7 +263,7 @@
         "profile_title": "Profile",
         "not_signed_in": "Not signed in",
         "sign_in_description": "Sign in to sync your profile and data across devices.",
-        "plan_section_title": "Transkit Cloud",
+        "plan_section_title": "FlameKit Cloud",
         "plan_badge_trial": "Free Trial",
         "plan_badge_starter": "Starter",
         "plan_badge_pro": "Pro",
@@ -416,7 +420,7 @@
         "startup": {
           "title": "Startup",
           "enable": "Enable Local Model",
-          "enable_hint": "Start the inference server when Transkit launches",
+          "enable_hint": "Start the inference server when FlameKit launches",
           "port": "Port",
           "status_running": "Running",
           "status_stopped": "Stopped",
@@ -480,8 +484,8 @@
           "no_model_warning": "No model downloaded yet. Download a model in the Models section below before starting the server."
         },
         "startup": {
-          "enable": "Start when open Transkit",
-          "enable_hint": "Automatically start the ONNX server when Transkit launches if a downloaded model is available."
+          "enable": "Start when open FlameKit",
+          "enable_hint": "Automatically start the ONNX server when FlameKit launches if a downloaded model is available."
         },
         "manage_in_settings": "Manage engine and models in Settings → Local Models",
         "usage_hint": "To use ONNX speech recognition, go to Settings → Services → Transcription and add an \"Offline STT (ONNX)\" service instance."
@@ -515,7 +519,7 @@
       "tts_volume": "Volume",
       "context_panel": "Context",
       "ctx_domain_placeholder": "Topic context (e.g. Web3 conference, medical talk...)",
-      "ctx_terms_placeholder": "Key terms, comma-separated (e.g. TransKit, Soniox, API)",
+      "ctx_terms_placeholder": "Key terms, comma-separated (e.g. FlameKit, Soniox, API)",
       "ctx_preset_meeting": "Meeting",
       "ctx_preset_movie_cn": "Movie CN",
       "ctx_preset_movie_en": "Movie EN",
@@ -591,8 +595,8 @@
       "bookmark_add": "Bookmark this line",
       "bookmark_remove": "Remove bookmark",
       "tts_replay": "Replay audio",
-      "quota_exceeded_title": "Transkit Cloud quota reached ({{used}}/{{limit}} min used).",
-      "quota_exceeded_title_short": "Transkit Cloud quota reached.",
+      "quota_exceeded_title": "FlameKit Cloud quota reached ({{used}}/{{limit}} min used).",
+      "quota_exceeded_title_short": "FlameKit Cloud quota reached.",
       "quota_action_upgrade": "Upgrade your plan",
       "quota_action_byok": "Or use your own API key: Settings › {{service}} › {{transcription}}",
       "auth_lock_conflict_title": "Authentication conflict — please try again.",
@@ -647,11 +651,11 @@
       "install_complete": "Installation Complete",
       "restart_now": "Restart Now",
       "restart_later": "Later",
-      "version_available": "A new version of Transkit is available!",
-      "version_info": "Transkit {{newVersion}} is now available—you have {{currentVersion}}.",
+      "version_available": "A new version of FlameKit is available!",
+      "version_info": "FlameKit {{newVersion}} is now available—you have {{currentVersion}}.",
       "download_prompt": "Would you like to download it now?",
-      "up_to_date": "Transkit is up to date!",
-      "current_version": "You have Transkit {{currentVersion}}, which is the latest version.",
+      "up_to_date": "FlameKit is up to date!",
+      "current_version": "You have FlameKit {{currentVersion}}, which is the latest version.",
       "skip_version": "Skip This Version",
       "remind_later": "Remind Me Later",
       "auto_update": "Automatically download and install updates in the future",
@@ -811,8 +815,8 @@
           "token": "Token"
         },
         "transkit_cloud_translate": {
-          "title": "Transkit Cloud",
-          "sign_in_desc": "Sign in to use Transkit Cloud Translation — no API key needed.",
+          "title": "FlameKit Cloud",
+          "sign_in_desc": "Sign in to use FlameKit Cloud Translation — no API key needed.",
           "continue_google": "Continue with Google",
           "continue_github": "Continue with GitHub",
           "sign_out": "Sign out",
@@ -822,7 +826,7 @@
           "upgrade_plan": "Upgrade your plan",
           "loading_usage": "Loading usage data…",
           "powered_by_note": "Powered by Gemini 2.5 Flash. Model may be updated for quality improvements.",
-          "not_available": "Transkit Cloud is not available in this build."
+          "not_available": "FlameKit Cloud is not available in this build."
         },
         "local_sidecar": {
           "title": "Local Model",
@@ -921,7 +925,7 @@
         "edge_tts": {
           "title": "Microsoft Edge TTS",
           "builtin": "Built-in",
-          "builtin_hint": "No server required — runs directly inside Transkit",
+          "builtin_hint": "No server required — runs directly inside FlameKit",
           "voice": "Voice",
           "rate": "Rate (e.g. +0%, +20%, -10%)",
           "pitch": "Pitch (e.g. +0Hz, +5Hz, -5Hz)"
@@ -949,8 +953,8 @@
           "model": "Model"
         },
         "transkit_cloud_tts": {
-          "title": "Transkit Cloud",
-          "sign_in_desc": "Sign in to use Transkit Cloud TTS — no API key needed. Your plan includes free trial characters.",
+          "title": "FlameKit Cloud",
+          "sign_in_desc": "Sign in to use FlameKit Cloud TTS — no API key needed. Your plan includes free trial characters.",
           "continue_google": "Continue with Google",
           "continue_github": "Continue with GitHub",
           "sign_out": "Sign out",
@@ -960,8 +964,8 @@
           "quota_reached": "Quota reached.",
           "upgrade_plan": "Upgrade your plan",
           "loading_usage": "Loading usage data…",
-          "auto_provider_note": "The active TTS provider is configured by Transkit and may change to deliver the best quality.",
-          "not_available": "Transkit Cloud is not available in this build."
+          "auto_provider_note": "The active TTS provider is configured by FlameKit and may change to deliver the best quality.",
+          "not_available": "FlameKit Cloud is not available in this build."
         },
         "google_cloud_tts": {
           "title": "Google Cloud TTS (Chirp3-HD)",
@@ -998,8 +1002,8 @@
           "title": "Google Gemini"
         },
         "transkit_cloud_ai": {
-          "title": "Transkit Cloud AI",
-          "sign_in_desc": "Sign in to use Transkit Cloud AI — no API key needed. Your plan includes free AI suggestion requests.",
+          "title": "FlameKit Cloud AI",
+          "sign_in_desc": "Sign in to use FlameKit Cloud AI — no API key needed. Your plan includes free AI suggestion requests.",
           "continue_google": "Continue with Google",
           "continue_github": "Continue with GitHub",
           "sign_out": "Sign out",
@@ -1009,7 +1013,7 @@
           "upgrade_plan": "Upgrade your plan",
           "loading_usage": "Loading usage data…",
           "powered_by_note": "Powered by Gemini 2.5 Flash. Model may be updated for quality improvements.",
-          "not_available": "Transkit Cloud is not available in this build."
+          "not_available": "FlameKit Cloud is not available in this build."
         },
         "local_sidecar_ai": {
           "title": "Offline AI (MLX)",
@@ -1096,8 +1100,8 @@
           "speaker_diarization_hint": "Identify and label different speakers. Disable to reduce latency."
         },
         "transkit_cloud_stt": {
-          "title": "Transkit Cloud STT",
-          "sign_in_desc": "Sign in to use Transkit Cloud STT — no API key needed. Your plan includes free trial minutes and automatically uses the best available provider.",
+          "title": "FlameKit Cloud STT",
+          "sign_in_desc": "Sign in to use FlameKit Cloud STT — no API key needed. Your plan includes free trial minutes and automatically uses the best available provider.",
           "continue_google": "Continue with Google",
           "continue_github": "Continue with GitHub",
           "sign_out": "Sign out",
@@ -1105,10 +1109,10 @@
           "quota_reached": "Quota reached.",
           "upgrade_plan": "Upgrade your plan",
           "quota_reached_hint": "or add a personal API key in another STT provider.",
-          "auto_provider_note": "The active STT provider is configured by Transkit and may change at any time to deliver the best quality. You do not need to manage any API keys.",
+          "auto_provider_note": "The active STT provider is configured by FlameKit and may change at any time to deliver the best quality. You do not need to manage any API keys.",
           "min_label": "min",
           "loading_usage": "Loading usage data…",
-          "not_available": "Transkit Cloud is not available in this build.",
+          "not_available": "FlameKit Cloud is not available in this build.",
           "advanced_settings": "Advanced Settings",
           "endpointing": "Endpointing",
           "endpointing_hint": "Silence duration that triggers utterance completion. Lower = faster response, higher = more complete sentences. Applied when the active provider supports it.",
@@ -1116,7 +1120,7 @@
           "speech_threshold_hint": "Minimum confidence to detect speech activity. Higher = fewer false triggers. Applied when the active provider supports it."
         },
         "transkit_cloud_dictation": {
-          "title": "Transkit Cloud Dictation",
+          "title": "FlameKit Cloud Dictation",
           "sign_in_desc": "Sign in to use Cloud Dictation — optimised for short push-to-talk sessions (Voice Anywhere, Narration PTT). No API key needed.",
           "continue_google": "Continue with Google",
           "continue_github": "Continue with GitHub",
@@ -1146,7 +1150,15 @@
       "loading": "Translating...",
       "show_other_translations": "View other translations",
       "hide_other_translations": "Hide other translations",
-      "input_placeholder": "Enter text to translate..."
+      "input_placeholder": "Enter text to translate...",
+      "reply": "Reply",
+      "reply_placeholder": "Type your reply...",
+      "reply_send": "Translate & paste",
+      "reply_sent": "Reply pasted",
+      "reply_no_source": "Could not detect the source language",
+      "reply_paste_failed": "Could not paste into the original app, copied to clipboard instead",
+      "collapse": "Collapse",
+      "expand": "Expand"
     },
     "recognize": {
       "recognize": "Recognize",

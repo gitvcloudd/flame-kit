@@ -1,6 +1,6 @@
-# TransKit Desktop
+# FlameKit Desktop
 
-TransKit Desktop is a cross-platform translation, OCR, realtime monitor, and TTS app for Windows, macOS, and Linux.
+FlameKit Desktop is a cross-platform translation, OCR, realtime monitor, and TTS app for Windows, macOS, and Linux.
 
 <div align="center">
 
@@ -20,7 +20,7 @@ TransKit Desktop is a cross-platform translation, OCR, realtime monitor, and TTS
 - [Full User Guide](./docs/user_guide.md)
 - [Usage](#usage)
 - [Keyboard Shortcuts](#keyboard-shortcuts)
-- [What Is New In TransKit](#what-is-new-in-transkit)
+- [What Is New In FlameKit](#what-is-new-in-flamekit)
 - [Installation](#installation)
 - [Transcription Setup (Monitor)](#transcription-setup-monitor)
 - [FAQ & Troubleshooting](#faq--troubleshooting)
@@ -109,9 +109,9 @@ The `Ctrl+Alt+` prefix (`Ctrl+Option+` on macOS) was chosen because:
 
 You can freely reassign any shortcut in **Settings → Hotkey**, or clear a field (Backspace) to disable it.
 
-## What Is New In TransKit
+## What Is New In FlameKit
 
-Compared to upstream Pot, TransKit extends realtime and AI workflows.
+Compared to upstream Pot, FlameKit extends realtime and AI workflows.
 
 ### Realtime Monitor
 
@@ -133,48 +133,7 @@ Implemented in [`src/window/Monitor/index.jsx`](./src/window/Monitor/index.jsx) 
 
 ## Installation
 
-Release page: <https://github.com/transkit-app/transkit-desktop/releases/latest>
-
-### Windows
-
-1. Download the latest `.exe` installer from [Releases](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Choose package by architecture:
-   - x64: `TransKit_{version}_x64-setup.exe`
-   - x86: `TransKit_{version}_x86-setup.exe`
-   - arm64: `TransKit_{version}_arm64-setup.exe`
-3. Run the installer.
-   > [!NOTE]
-   > If Windows Defender shows a "Windows protected your PC" message, click **"More info"** and then **"Run anyway"**.
-
-Alternatively, install via Winget:
-```powershell
-winget install TransKit
-```
-
-### macOS
-
-Install via Homebrew:
-```bash
-brew tap transkit-app/tap
-brew install --cask transkit
-```
-Alternatively 
-1. Download the latest `.dmg` from the [Releases page](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Open the `.dmg` and drag **TransKit** to Applications.
-3. **Important** — the app is not yet signed with an Apple Developer certificate. macOS will block it on first open. Run this command **once** in Terminal to allow it:
-   ```bash
-   xattr -cr /Applications/TransKit.app
-   ```
-4. On first launch, macOS will ask for **Screen & System Audio Recording** permissions. Toggle them **ON** in System Settings for TransKit to capture system audio.
-
-
-### Linux
-
-1. Download the package for your architecture from [Releases](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Available package formats:
-   - `.deb` (Ubuntu/Debian)
-   - `.rpm` (Fedora/RHEL)
-   - `.AppImage` (Universal)
+FlameKit has no published installers yet. To try it, build from source (see [Build From Source](#build-from-source)).
 
 ---
 
@@ -203,7 +162,7 @@ While basic translation features (Selection/Input/OCR) work out-of-the-box, the 
 
 ### No audio captured on macOS?
 - Go to **System Settings > Privacy & Security**.
-- Ensure TransKit has permissions for **Microphone** and **Screen Recording** (required for capturing system audio).
+- Ensure FlameKit has permissions for **Microphone** and **Screen Recording** (required for capturing system audio).
 
 ## Build From Source
 
@@ -222,11 +181,11 @@ pnpm tauri build
 ```
 
 > [!TIP]
-> **For Developers Building from Source**: If you want to disable Transkit Cloud features (Auth, Trial keys), copy `.env.example` to `.env` and set `VITE_DISABLE_CLOUD=true` before building.
+> **For Developers Building from Source**: If you want to disable FlameKit Cloud features (Auth, Trial keys), copy `.env.example` to `.env` and set `VITE_DISABLE_CLOUD=true` before building.
 
 ## Release New Version (All Platforms)
 
-TransKit uses CI workflow: [`.github/workflows/package.yml`](./.github/workflows/package.yml)
+FlameKit uses CI workflow: [`.github/workflows/package.yml`](./.github/workflows/package.yml)
 
 1. Update [`CHANGELOG`](./CHANGELOG).
 2. Create tag:
@@ -264,7 +223,7 @@ pnpm tauri build
 
 ## Credits
 
-This project was originally forked from [Pot Desktop](https://github.com/pot-app/pot-desktop).
+FlameKit is based on [TransKit](https://github.com/transkit-app/transkit-desktop), which was originally forked from [Pot Desktop](https://github.com/pot-app/pot-desktop).
 
 Significant improvements and modifications have been made.
 

@@ -1,6 +1,6 @@
-# TransKit Desktop
+# FlameKit Desktop
 
-TransKit Desktop là ứng dụng dịch thuật, OCR, realtime monitor và TTS đa nền tảng cho Windows, macOS và Linux.
+FlameKit Desktop là ứng dụng dịch thuật, OCR, realtime monitor và TTS đa nền tảng cho Windows, macOS và Linux.
 
 <div align="center">
 
@@ -21,7 +21,7 @@ TransKit Desktop là ứng dụng dịch thuật, OCR, realtime monitor và TTS 
 - [Hướng dẫn sử dụng đầy đủ](./docs/user_guide_vi.md)
 - [Usage](#usage)
 - [Phím tắt mặc định](#phím-tắt-mặc-định)
-- [Điểm Mới Trên TransKit](#điểm-mới-trên-transkit)
+- [Điểm Mới Trên FlameKit](#điểm-mới-trên-flamekit)
 - [Cài Đặt](#cài-đặt)
 - [Cấu hình Phiên âm (Monitor)](#cấu-hình-phiên-âm-monitor)
 - [Hỏi đáp & Xử lý sự cố](#hỏi-đáp--xử-lý-sự-cố)
@@ -95,9 +95,9 @@ Prefix `Ctrl+Alt+` (`Ctrl+Option+` trên macOS) được chọn vì:
 
 Bạn hoàn toàn có thể đổi bất kỳ phím nào sang tổ hợp phù hợp hơn với workflow của mình.
 
-## Điểm Mới Trên TransKit
+## Điểm Mới Trên FlameKit
 
-So với Pot gốc, TransKit mở rộng mạnh workflow realtime và AI.
+So với Pot gốc, FlameKit mở rộng mạnh workflow realtime và AI.
 
 ### Realtime Monitor
 
@@ -119,48 +119,7 @@ Triển khai tại [`src/window/Monitor/index.jsx`](./src/window/Monitor/index.j
 
 ## Cài Đặt
 
-Trang release: <https://github.com/transkit-app/transkit-desktop/releases/latest>
-
-### Windows
-
-1. Tải file cài đặt `.exe` mới nhất từ [Releases](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Chọn đúng kiến trúc:
-   - x64: `TransKit_{version}_x64-setup.exe`
-   - x86: `TransKit_{version}_x86-setup.exe`
-   - arm64: `TransKit_{version}_arm64-setup.exe`
-3. Chạy installer.
-   > [!NOTE]
-   > Nếu Windows Defender hiển thị thông báo "Windows protected your PC", hãy nhấn **"More info"** và chọn **"Run anyway"**.
-
-Hoặc cài đặt qua Winget:
-```powershell
-winget install TransKit
-```
-
-### macOS
-
-Cài đặt qua Homebrew:
-```bash
-brew tap transkit-app/tap
-brew install --cask transkit
-```
-Hoặc trực tiếp:
-1. Tải file `.dmg` mới nhất từ trang [Releases](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Mở file `.dmg` và kéo **TransKit** vào thư mục Applications.
-3. **Quan trọng** — Ứng dụng hiện chưa được ký (sign). macOS sẽ chặn khi mở lần đầu. Hãy chạy lệnh này **một lần duy nhất** trong Terminal để cho phép ứng dụng:
-   ```bash
-   xattr -cr /Applications/TransKit.app
-   ```
-4. Khi mở lần đầu, macOS sẽ hỏi quyền **Screen & System Audio Recording**. Hãy bật **ON** trong System Settings để ứng dụng có thể bắt được âm thanh hệ thống.
-
-
-### Linux
-
-1. Tải gói theo đúng kiến trúc từ [Releases](https://github.com/transkit-app/transkit-desktop/releases/latest).
-2. Các định dạng gói:
-   - `.deb` (Ubuntu/Debian)
-   - `.rpm` (Fedora/RHEL)
-   - `.AppImage` (Phổ thông)
+FlameKit chưa có bản cài đặt chính thức. Muốn dùng thử, bạn build từ source (xem [Build Từ Source](#build-từ-source)).
 
 ---
 
@@ -189,7 +148,7 @@ Trong khi các tính năng dịch cơ bản (Bôi đen/Nhập liệu/OCR) có th
 
 ### Không bắt được âm thanh trên macOS?
 - Vào **System Settings > Privacy & Security**.
-- Đảm bảo TransKit đã được cấp quyền **Microphone** và **Screen Recording** (cần thiết để bắt âm thanh hệ thống).
+- Đảm bảo FlameKit đã được cấp quyền **Microphone** và **Screen Recording** (cần thiết để bắt âm thanh hệ thống).
 
 ## Build Từ Source
 
@@ -208,11 +167,11 @@ pnpm tauri build
 ```
 
 > [!TIP]
-> **Đối với nhà phát triển build từ Source**: Nếu bạn muốn tắt các tính năng Transkit Cloud (Xác thực, Khóa dùng thử), hãy sao chép `.env.example` sang `.env` và đặt `VITE_DISABLE_CLOUD=true` trước khi build.
+> **Đối với nhà phát triển build từ Source**: Nếu bạn muốn tắt các tính năng FlameKit Cloud (Xác thực, Khóa dùng thử), hãy sao chép `.env.example` sang `.env` và đặt `VITE_DISABLE_CLOUD=true` trước khi build.
 
 ## Release Version Mới (All Platforms)
 
-TransKit dùng workflow CI: [`.github/workflows/package.yml`](./.github/workflows/package.yml)
+FlameKit dùng workflow CI: [`.github/workflows/package.yml`](./.github/workflows/package.yml)
 
 1. Cập nhật [`CHANGELOG`](./CHANGELOG).
 2. Tạo tag:
@@ -250,7 +209,7 @@ pnpm tauri build
 
 ## Credits
 
-Dự án này ban đầu được fork từ [Pot Desktop](https://github.com/pot-app/pot-desktop).
+FlameKit dựa trên [TransKit](https://github.com/transkit-app/transkit-desktop), vốn ban đầu được fork từ [Pot Desktop](https://github.com/pot-app/pot-desktop).
 
 Đã có nhiều cải tiến và sửa đổi đáng kể.
 

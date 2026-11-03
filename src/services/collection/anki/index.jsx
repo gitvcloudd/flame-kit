@@ -73,15 +73,15 @@ export async function collection(source, target, options = {}) {
         return results;
     }
 
-    await ankiConnect('createDeck', 6, { deck: 'TransKit' });
+    await ankiConnect('createDeck', 6, { deck: 'FlameKit' });
 
     await ankiConnect('createModel', 6, {
-        modelName: 'TransKit Card 2',
+        modelName: 'FlameKit Card 2',
         inOrderFields: ['Front', 'Back', 'Symbol1', 'Voice1', 'Symbol2', 'Voice2'],
         isCloze: false,
         cardTemplates: [
             {
-                Name: 'TransKit Card 2',
+                Name: 'FlameKit Card 2',
                 Front: '{{Front}}',
                 Back: '{{FrontSide}}<br>{{Symbol1}} {{Voice1}}<br>{{Symbol2}} {{Voice2}}<hr id=answer>{{Back}}',
             },
@@ -91,8 +91,8 @@ export async function collection(source, target, options = {}) {
     let pronunciations = ankiPronunciation(target);
     await ankiConnect('addNote', 6, {
         note: {
-            deckName: 'TransKit',
-            modelName: 'TransKit Card 2',
+            deckName: 'FlameKit',
+            modelName: 'FlameKit Card 2',
             fields: {
                 Front: source,
                 Back: ankiText(target),

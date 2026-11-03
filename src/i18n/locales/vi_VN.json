@@ -208,7 +208,7 @@
           "tts_playback_rate": "Tốc độ phát mặc định",
           "tts_playback_rate_hint": "Khi có hàng chờ, tốc độ tự tăng theo (×1.5 / ×2.0 / ×2.5 so với giá trị này).",
           "tts_edge_builtin": "Tích hợp sẵn",
-          "tts_edge_builtin_hint": "Không cần server riêng — chạy trực tiếp trong Transkit",
+          "tts_edge_builtin_hint": "Không cần server riêng — chạy trực tiếp trong FlameKit",
           "tts_edge_voice": "Giọng đọc",
           "tts_edge_rate": "Tốc độ đọc (vd: +0%, +20%, -10%)",
           "tts_edge_pitch": "Cao độ giọng (vd: +0Hz, +5Hz, -5Hz)",
@@ -241,6 +241,10 @@
         "least": "Vui lòng giữ ít nhất một dịch vụ",
         "add_builtin_service": "Thêm dịch vụ có sẵn",
         "add_external_service": "Thêm tiện ích mở rộng",
+        "group_free": "Miễn phí",
+        "group_key": "Cần API key",
+        "group_local": "Chạy local",
+        "group_other": "Khác",
         "add_service": "Thêm dịch vụ",
         "test_failed": "Kiểm tra thất bại",
         "install_plugin": "Cài đặt Plugin",
@@ -259,7 +263,7 @@
         "profile_title": "Hồ sơ",
         "not_signed_in": "Chưa đăng nhập",
         "sign_in_description": "Đăng nhập để đồng bộ hồ sơ và dữ liệu của bạn trên nhiều thiết bị.",
-        "plan_section_title": "Transkit Cloud",
+        "plan_section_title": "FlameKit Cloud",
         "plan_badge_trial": "Dùng thử",
         "plan_badge_starter": "Starter",
         "plan_badge_pro": "Pro",
@@ -416,7 +420,7 @@
         "startup": {
           "title": "Khởi động",
           "enable": "Bật Offline model",
-          "enable_hint": "Khởi động Offline model khi mở Transkit",
+          "enable_hint": "Khởi động Offline model khi mở FlameKit",
           "port": "Cổng",
           "status_running": "Đang chạy",
           "status_stopped": "Đã dừng",
@@ -480,8 +484,8 @@
           "no_model_warning": "Chưa tải mô hình nào. Hãy tải mô hình ở mục bên dưới trước khi khởi động server."
         },
         "startup": {
-          "enable": "Khởi động khi mở Transkit",
-          "enable_hint": "Tự động khởi động ONNX server khi mở Transkit nếu đã có mô hình được tải về."
+          "enable": "Khởi động khi mở FlameKit",
+          "enable_hint": "Tự động khởi động ONNX server khi mở FlameKit nếu đã có mô hình được tải về."
         },
         "manage_in_settings": "Quản lý engine và mô hình trong Cài đặt → Local Models",
         "usage_hint": "Để dùng ONNX STT, vào Cài đặt → Services → Transcription và thêm service \"Offline STT (ONNX)\"."
@@ -514,7 +518,7 @@
       "tts_volume": "Âm lượng",
       "context_panel": "Ngữ cảnh",
       "ctx_domain_placeholder": "Mô tả chủ đề (VD: hội nghị Web3, y khoa...)",
-      "ctx_terms_placeholder": "Thuật ngữ, cách nhau bằng dấu phẩy (VD: TransKit, Soniox, API)",
+      "ctx_terms_placeholder": "Thuật ngữ, cách nhau bằng dấu phẩy (VD: FlameKit, Soniox, API)",
       "ctx_preset_meeting": "Họp",
       "ctx_preset_movie_cn": "Phim CN",
       "ctx_preset_movie_en": "Phim EN",
@@ -574,7 +578,7 @@
       "narration_ptt_requires_fixed_source": "PTT đảo chiều cần Source language cố định (không để Auto). Ví dụ: Nhật Bản → Việt Nam.",
       "narration_ptt_active": "PTT Active",
       "narration_ptt_active_hint": "Bật nút Push to Talk",
-      "narration_ptt_cost_warning": "Khi dùng PTT với Transkit Cloud STT, hệ thống tự chuyển sang Cloud Dictation — tính phí theo lần dùng, không tốn phí khi không nói. Các dịch vụ khác sẽ mở thêm một luồng STT song song khi nhấn giữ.",
+      "narration_ptt_cost_warning": "Khi dùng PTT với FlameKit Cloud STT, hệ thống tự chuyển sang Cloud Dictation — tính phí theo lần dùng, không tốn phí khi không nói. Các dịch vụ khác sẽ mở thêm một luồng STT song song khi nhấn giữ.",
       "narration_ptt_section": "Cài đặt PTT",
       "narration_ptt_label": "PTT",
       "narration_beta": "Beta",
@@ -590,8 +594,8 @@
       "bookmark_add": "Đánh dấu dòng này",
       "bookmark_remove": "Xóa đánh dấu",
       "tts_replay": "Phát lại audio",
-      "quota_exceeded_title": "Đã hết quota Transkit Cloud (đã dùng {{used}}/{{limit}} phút).",
-      "quota_exceeded_title_short": "Đã hết quota Transkit Cloud.",
+      "quota_exceeded_title": "Đã hết quota FlameKit Cloud (đã dùng {{used}}/{{limit}} phút).",
+      "quota_exceeded_title_short": "Đã hết quota FlameKit Cloud.",
       "quota_action_upgrade": "Nâng cấp gói của bạn",
       "quota_action_byok": "Hoặc dùng API key của bạn: Cài đặt › {{service}} › {{transcription}}",
       "auth_lock_conflict_title": "Xung đột xác thực — vui lòng thử lại.",
@@ -696,11 +700,11 @@
       "install_complete": "Cài đặt hoàn tất",
       "restart_now": "Khởi động lại ngay",
       "restart_later": "Để sau",
-      "version_available": "Có phiên bản Transkit mới!",
-      "version_info": "Transkit {{newVersion}} đã được phát hành — bạn đang dùng {{currentVersion}}.",
+      "version_available": "Có phiên bản FlameKit mới!",
+      "version_info": "FlameKit {{newVersion}} đã được phát hành — bạn đang dùng {{currentVersion}}.",
       "download_prompt": "Bạn có muốn tải xuống ngay không?",
-      "up_to_date": "Transkit đã ở phiên bản mới nhất!",
-      "current_version": "Bạn đang dùng Transkit {{currentVersion}}, đây là phiên bản mới nhất.",
+      "up_to_date": "FlameKit đã ở phiên bản mới nhất!",
+      "current_version": "Bạn đang dùng FlameKit {{currentVersion}}, đây là phiên bản mới nhất.",
       "skip_version": "Bỏ qua phiên bản này",
       "remind_later": "Nhắc tôi sau",
       "auto_update": "Tự động tải và cài đặt cập nhật trong tương lai",
@@ -860,8 +864,8 @@
           "token": "Token"
         },
         "transkit_cloud_translate": {
-          "title": "Transkit Cloud",
-          "sign_in_desc": "Đăng nhập để dùng Transkit Cloud Dịch thuật — không cần API key.",
+          "title": "FlameKit Cloud",
+          "sign_in_desc": "Đăng nhập để dùng FlameKit Cloud Dịch thuật — không cần API key.",
           "continue_google": "Tiếp tục với Google",
           "continue_github": "Tiếp tục với GitHub",
           "sign_out": "Đăng xuất",
@@ -871,7 +875,7 @@
           "upgrade_plan": "Nâng cấp gói",
           "loading_usage": "Đang tải dữ liệu sử dụng…",
           "powered_by_note": "Được hỗ trợ bởi Gemini 2.5 Flash. Model có thể được cập nhật để cải thiện chất lượng.",
-          "not_available": "Transkit Cloud không khả dụng trong bản build này."
+          "not_available": "FlameKit Cloud không khả dụng trong bản build này."
         },
         "local_sidecar": {
           "title": "Offline model",
@@ -970,7 +974,7 @@
         "edge_tts": {
           "title": "Microsoft Edge TTS",
           "builtin": "Tích hợp sẵn",
-          "builtin_hint": "Không cần server riêng — chạy trực tiếp trong Transkit",
+          "builtin_hint": "Không cần server riêng — chạy trực tiếp trong FlameKit",
           "voice": "Giọng đọc",
           "rate": "Tốc độ đọc (vd: +0%, +20%, -10%)",
           "pitch": "Cao độ giọng (vd: +0Hz, +5Hz, -5Hz)"
@@ -998,8 +1002,8 @@
           "model": "Model"
         },
         "transkit_cloud_tts": {
-          "title": "Transkit Cloud",
-          "sign_in_desc": "Đăng nhập để dùng Transkit Cloud TTS — không cần API key. Gói của bạn bao gồm ký tự dùng thử miễn phí.",
+          "title": "FlameKit Cloud",
+          "sign_in_desc": "Đăng nhập để dùng FlameKit Cloud TTS — không cần API key. Gói của bạn bao gồm ký tự dùng thử miễn phí.",
           "continue_google": "Tiếp tục với Google",
           "continue_github": "Tiếp tục với GitHub",
           "sign_out": "Đăng xuất",
@@ -1009,8 +1013,8 @@
           "quota_reached": "Đã hết quota.",
           "upgrade_plan": "Nâng cấp gói",
           "loading_usage": "Đang tải dữ liệu sử dụng…",
-          "auto_provider_note": "Nhà cung cấp TTS được Transkit cấu hình và có thể thay đổi để đảm bảo chất lượng tốt nhất.",
-          "not_available": "Transkit Cloud không khả dụng trong bản build này."
+          "auto_provider_note": "Nhà cung cấp TTS được FlameKit cấu hình và có thể thay đổi để đảm bảo chất lượng tốt nhất.",
+          "not_available": "FlameKit Cloud không khả dụng trong bản build này."
         },
         "google_cloud_tts": {
           "title": "Google Cloud TTS (Chirp3-HD)",
@@ -1047,8 +1051,8 @@
           "title": "Google Gemini"
         },
         "transkit_cloud_ai": {
-          "title": "Transkit Cloud AI",
-          "sign_in_desc": "Đăng nhập để dùng Transkit Cloud AI — không cần API key. Gói của bạn bao gồm yêu cầu AI miễn phí.",
+          "title": "FlameKit Cloud AI",
+          "sign_in_desc": "Đăng nhập để dùng FlameKit Cloud AI — không cần API key. Gói của bạn bao gồm yêu cầu AI miễn phí.",
           "continue_google": "Tiếp tục với Google",
           "continue_github": "Tiếp tục với GitHub",
           "sign_out": "Đăng xuất",
@@ -1058,7 +1062,7 @@
           "upgrade_plan": "Nâng cấp gói",
           "loading_usage": "Đang tải dữ liệu sử dụng…",
           "powered_by_note": "Được hỗ trợ bởi Gemini 2.5 Flash. Model có thể được cập nhật để cải thiện chất lượng.",
-          "not_available": "Transkit Cloud không khả dụng trong bản build này."
+          "not_available": "FlameKit Cloud không khả dụng trong bản build này."
         },
         "local_sidecar_ai": {
           "title": "Offline AI (MLX)",
@@ -1145,8 +1149,8 @@
           "speaker_diarization_hint": "Phân biệt và gán nhãn từng người nói. Tắt để giảm độ trễ."
         },
         "transkit_cloud_stt": {
-          "title": "Transkit Cloud STT",
-          "sign_in_desc": "Đăng nhập để dùng Transkit Cloud STT — không cần API key. Gói của bạn có sẵn phút dùng thử miễn phí và tự động chọn provider tốt nhất.",
+          "title": "FlameKit Cloud STT",
+          "sign_in_desc": "Đăng nhập để dùng FlameKit Cloud STT — không cần API key. Gói của bạn có sẵn phút dùng thử miễn phí và tự động chọn provider tốt nhất.",
           "continue_google": "Tiếp tục với Google",
           "continue_github": "Tiếp tục với GitHub",
           "sign_out": "Đăng xuất",
@@ -1154,10 +1158,10 @@
           "quota_reached": "Đã dùng hết quota.",
           "upgrade_plan": "Nâng cấp gói",
           "quota_reached_hint": "hoặc thêm API key cá nhân vào một provider STT khác.",
-          "auto_provider_note": "Provider STT đang hoạt động do Transkit cấu hình và có thể thay đổi bất cứ lúc nào để đảm bảo chất lượng tốt nhất. Bạn không cần quản lý API key.",
+          "auto_provider_note": "Provider STT đang hoạt động do FlameKit cấu hình và có thể thay đổi bất cứ lúc nào để đảm bảo chất lượng tốt nhất. Bạn không cần quản lý API key.",
           "min_label": "phút",
           "loading_usage": "Đang tải dữ liệu sử dụng…",
-          "not_available": "Transkit Cloud không khả dụng trong bản build này.",
+          "not_available": "FlameKit Cloud không khả dụng trong bản build này.",
           "advanced_settings": "Cài đặt nâng cao",
           "endpointing": "Endpointing",
           "endpointing_hint": "Khoảng lặng tối thiểu để xác nhận kết thúc câu. Thấp hơn = phản hồi nhanh hơn, cao hơn = câu đầy đủ hơn. Áp dụng khi provider hỗ trợ.",
@@ -1165,7 +1169,7 @@
           "speech_threshold_hint": "Độ nhạy tối thiểu để phát hiện giọng nói. Cao hơn = ít false trigger hơn. Áp dụng khi provider hỗ trợ."
         },
         "transkit_cloud_dictation": {
-          "title": "Transkit Cloud Dictation",
+          "title": "FlameKit Cloud Dictation",
           "sign_in_desc": "Đăng nhập để dùng Cloud Dictation — tối ưu cho các phiên push-to-talk ngắn (Voice Anywhere, Narration PTT). Không cần API key.",
           "continue_google": "Tiếp tục với Google",
           "continue_github": "Tiếp tục với GitHub",
@@ -1174,7 +1178,7 @@
           "quota_reached": "Đã dùng hết quota.",
           "upgrade_plan": "Nâng cấp gói",
           "loading_usage": "Đang tải dữ liệu sử dụng…",
-          "not_available": "Transkit Cloud không khả dụng trong bản build này."
+          "not_available": "FlameKit Cloud không khả dụng trong bản build này."
         },
         "local_sidecar_stt": {
           "title": "Offline STT (MLX)"
@@ -1196,7 +1200,15 @@
       "loading": "Đang dịch...",
       "show_other_translations": "Xem các bản dịch khác",
       "hide_other_translations": "Ẩn các bản dịch khác",
-      "input_placeholder": "Nhập văn bản cần dịch..."
+      "input_placeholder": "Nhập văn bản cần dịch...",
+      "reply": "Trả lời",
+      "reply_placeholder": "Nhập câu trả lời...",
+      "reply_send": "Dịch và dán",
+      "reply_sent": "Đã dán câu trả lời",
+      "reply_no_source": "Không xác định được ngôn ngữ nguồn",
+      "reply_paste_failed": "Không dán được vào app gốc, đã sao chép vào clipboard",
+      "collapse": "Thu gọn",
+      "expand": "Mở rộng"
     },
     "recognize": {
       "recognize": "Nhận dạng",

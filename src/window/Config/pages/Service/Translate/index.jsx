@@ -2,15 +2,31 @@ import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import { Card, Spacer, Button, useDisclosure } from '@nextui-org/react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import { useToastStyle } from '../../../../../hooks';
+import { getServiceName, whetherPluginService } from '../../../../../utils/service_instance';
 import SelectPluginModal from '../SelectPluginModal';
 import { osType } from '../../../../../utils/env';
 import { useConfig, deleteKey } from '../../../../../hooks';
 import ServiceItem from './ServiceItem';
 import SelectModal from './SelectModal';
 import ConfigModal from './ConfigModal';
+
+// Cost group for the free/paid split in the service list. Anything not
+// classified here (plugins, cloud services, unlisted services) lands in
+// "other" rather than being mislabeled as free or paid.
+const FREE_TRANSLATE_SERVICES = new Set(['google', 'bing', 'bing_dict', 'cambridge_dict', 'ecdict', 'lingva']);
+const LOCAL_TRANSLATE_SERVICES = new Set(['ollama', 'local_sidecar']);
+const KEY_TRANSLATE_SERVICES = new Set(['geminipro', 'openai', 'openrouter', 'groq', 'chatglm', 'deepl', 'baidu', 'baidu_field', 'caiyun', 'tencent', 'transmart', 'volcengine', 'youdao', 'google_cloud_translate', 'alibaba']);
+function costGroupOf(instanceKey) {
+    if (whetherPluginService(instanceKey)) return 'other';
+    const name = getServiceName(instanceKey);
+    if (FREE_TRANSLATE_SERVICES.has(name)) return 'free';
+    if (LOCAL_TRANSLATE_SERVICES.has(name)) return 'local';
+    if (KEY_TRANSLATE_SERVICES.has(name)) return 'key';
+    return 'other';
+}
 
 export default function Translate(props) {
     const { pluginList } = props;
@@ -83,7 +99,18 @@ export default function Translate(props) {
                             >
                                 {translateServiceInstanceList !== null &&
                                     translateServiceInstanceList.map((x, i) => {
+                                        // Group divider, shown when the cost group changes in list order.
+                                        // The list itself is NOT re-sorted, so drag-and-drop keeps working;
+                                        // drag items together to consolidate a group.
+                                        const group = costGroupOf(x);
+                                        const prevGroup = i > 0 ? costGroupOf(translateServiceInstanceList[i - 1]) : null;
                                         return (
+                                            <Fragment key={x}>
+                                                {group !== prevGroup && (
+                                                    <div className='px-1 pt-3 pb-1 text-[11px] font-semibold tracking-wider text-default-400 uppercase'>
+                                                        {t(`config.service.group_${group}`)}
+                                                    </div>
+                                                )}
                                             <Draggable
                                                 key={x}
                                                 draggableId={x}
@@ -109,6 +136,7 @@ export default function Translate(props) {
                                                     );
                                                 }}
                                             </Draggable>
+                                            </Fragment>
                                         );
                                     })}
                             </div>

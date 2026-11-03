@@ -87,16 +87,15 @@ export default function About() {
         <div className='h-full w-full overflow-y-auto'>
             {/* Hero Section */}
             <div className='flex flex-col items-center justify-center pt-2 pb-8 px-8'>
-                <div className='relative group'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-300'></div>
+                <div className='relative'>
                     <img
                         src='icon.png'
-                        className='relative h-24 w-24 mb-4 drop-shadow-2xl'
+                        className='relative h-24 w-24 mb-4'
                         draggable={false}
                     />
                 </div>
-                <h1 className='text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2'>
-                    TransKit
+                <h1 className='text-4xl font-bold text-foreground mb-2'>
+                    FlameKit
                 </h1>
                 <Chip
                     color='primary'
@@ -114,13 +113,6 @@ export default function About() {
             {/* Main Actions Grid */}
             <div className='px-8 pb-6'>
                 <div className='grid grid-cols-2 gap-3 mb-4'>
-                    <ActionCard
-                        icon={BsGlobe}
-                        title={t('config.about.website')}
-                        description='transkit.app'
-                        onClick={() => open('https://transkit.app')}
-                        color='primary'
-                    />
                     <ActionCard
                         icon={BsGithub}
                         title={t('config.about.github')}
@@ -281,7 +273,7 @@ export default function About() {
                                 </Link>
                             </p>
                             <p className='text-xs text-default-500 leading-relaxed'>
-                                TransKit is built upon the excellent work of the Pot community. We're committed to
+                                FlameKit is built upon the excellent work of the Pot community. We're committed to
                                 open-source development and giving back to the community.
                             </p>
                         </div>

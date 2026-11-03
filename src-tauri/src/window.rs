@@ -263,6 +263,9 @@ pub fn selection_translate() {
         return;
     }
     let app_handle = APP.get().unwrap();
+    // Record the frontmost external app BEFORE showing the popup, so the
+    // popup's Reply button can paste the translated reply back into it.
+    crate::voice_anywhere::capture_last_external_app(app_handle);
     // Write into State
     let state: tauri::State<StringWrapper> = app_handle.state();
     state.0.lock().unwrap().replace_range(.., &text);
@@ -273,6 +276,8 @@ pub fn selection_translate() {
 
 pub fn input_translate() {
     let app_handle = APP.get().unwrap();
+    // Same capture as selection_translate, so Reply also works from input mode.
+    crate::voice_anywhere::capture_last_external_app(app_handle);
     // Clear State
     let state: tauri::State<StringWrapper> = app_handle.state();
     state

@@ -57,7 +57,7 @@ function StatusDot({ status }) {
 // Short display label for service names shown in the bottom status bar
 const SVC_LABELS = {
     deepgram_stt: 'Deepgram', soniox_stt: 'Soniox', gladia_stt: 'Gladia',
-    transkit_cloud_stt: 'Transkit Cloud STT', transkit_cloud_dictation: 'Transkit Cloud Dictation',
+    transkit_cloud_stt: 'FlameKit Cloud STT', transkit_cloud_dictation: 'FlameKit Cloud Dictation',
     openai_whisper_stt: 'Whisper', assemblyai_stt: 'AssemblyAI', local_sidecar_stt: 'Offline STT (MLX)',
     edge_tts: 'Edge TTS', elevenlabs_tts: 'ElevenLabs', google_tts: 'Google TTS',
     google_cloud_tts: 'Google Cloud TTS',
@@ -1175,7 +1175,7 @@ export default function Monitor() {
         if (autosaveEnabled) {
             try {
                 const filePath = await getTranscriptFilePath();
-                const header = `# TransKit Transcript\n\n**Started:** ${new Date().toLocaleString()}\n**Source language:** ${sourceLang}\n**Target language:** ${targetLang}\n\n---\n\n`;
+                const header = `# FlameKit Transcript\n\n**Started:** ${new Date().toLocaleString()}\n**Source language:** ${sourceLang}\n**Target language:** ${targetLang}\n\n---\n\n`;
                 await writeTextFile(filePath, header);
                 transcriptFileRef.current = filePath;
                 setSavePath(filePath);

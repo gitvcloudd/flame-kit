@@ -31,8 +31,8 @@ import { polishTranscript } from '../../utils/polishTranscript';
 const STT_FRIENDLY_NAMES = {
     onnx_stt:                  'Offline STT (ONNX)',
     local_sidecar_stt:         'Offline STT (MLX)',
-    transkit_cloud_stt:        'Transkit Cloud',
-    transkit_cloud_dictation:  'Transkit Cloud',
+    transkit_cloud_stt:        'FlameKit Cloud',
+    transkit_cloud_dictation:  'FlameKit Cloud',
     soniox_stt:                'Soniox',
     deepgram_stt:              'Deepgram',
     openai_whisper_stt:        'OpenAI Whisper',
