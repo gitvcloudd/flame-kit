@@ -1,8 +1,9 @@
 name: Package
 on:
     push:
-        branches: [master]
-        tags-ignore: [updater]
+        branches: [main]
+        tags: ['v*']
+    workflow_dispatch:
 permissions: write-all
 
 jobs:
@@ -22,19 +23,25 @@ jobs:
                   sudo apt-get install -y git
             - id: outputstep
               run: |
-                  echo "VERSION=$(git describe --tags | sed 's/-[0-9]*-.*//g')" >> "$GITHUB_OUTPUT"
+                  if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+                      VERSION="${GITHUB_REF#refs/tags/v}"
+                  else
+                      VERSION=$(grep -m1 '"version"' package.json | sed 's/.*: *"//;s/".*//')
+                  fi
+                  echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
             - name: Change Version for Build Metadata
               run: |
-                  sed -i "s/\"version\":.*/\"version\": \"$(git describe --tags | sed 's/-[0-9]*-.*//g')\"/g" src-tauri/tauri.conf.json
+                  sed -i "s/\"version\":.*/\"version\": \"${{ steps.outputstep.outputs.VERSION }}\"/g" src-tauri/tauri.conf.json
 
-                  sed -i "s/version = \"0.0.0\"/version = \"$(git describe --tags | sed 's/-[0-9]*-.*//g')\"/g" src-tauri/Cargo.toml
+                  sed -i "s/version = \"0.0.0\"/version = \"${{ steps.outputstep.outputs.VERSION }}\"/g" src-tauri/Cargo.toml
 
-                  echo $(git describe --tags | sed 's/-[0-9]*-.*//g')
+                  echo "${{ steps.outputstep.outputs.VERSION }}
 
-            - name: Inject cloud credentials
+            # FlameKit builds local-only: no cloud credentials. The Supabase
+            # secret lines were removed so no secret can leak through the
+            # source artifact on this public repo.
+            - name: Disable cloud for local-only build
               run: |
-                  echo "VITE_SUPABASE_URL=${{ secrets.VITE_SUPABASE_URL }}" >> .env
-                  echo "VITE_SUPABASE_ANON_KEY=${{ secrets.VITE_SUPABASE_ANON_KEY }}" >> .env
                   echo "VITE_DISABLE_CLOUD=true" >> .env
 
             - name: Upload Artifacts for Windows
@@ -155,13 +162,13 @@ jobs:
             - name: Change File Name
               if: matrix.target == 'aarch64-apple-darwin'
               run: |
-                  sudo mv src-tauri/target/aarch64-apple-darwin/release/bundle/macos/TransKit.app.tar.gz src-tauri/target/aarch64-apple-darwin/release/bundle/macos/TransKit_${{needs.change-version.outputs.version}}_aarch64.app.tar.gz
-                  sudo mv src-tauri/target/aarch64-apple-darwin/release/bundle/macos/TransKit.app.tar.gz.sig src-tauri/target/aarch64-apple-darwin/release/bundle/macos/TransKit_${{needs.change-version.outputs.version}}_aarch64.app.tar.gz.sig
+                  sudo mv src-tauri/target/aarch64-apple-darwin/release/bundle/macos/FlameKit.app.tar.gz src-tauri/target/aarch64-apple-darwin/release/bundle/macos/FlameKit_${{needs.change-version.outputs.version}}_aarch64.app.tar.gz
+                  sudo mv src-tauri/target/aarch64-apple-darwin/release/bundle/macos/FlameKit.app.tar.gz.sig src-tauri/target/aarch64-apple-darwin/release/bundle/macos/FlameKit_${{needs.change-version.outputs.version}}_aarch64.app.tar.gz.sig
             - name: Change File Name
               if: matrix.target == 'x86_64-apple-darwin'
               run: |
-                  sudo mv src-tauri/target/x86_64-apple-darwin/release/bundle/macos/TransKit.app.tar.gz src-tauri/target/x86_64-apple-darwin/release/bundle/macos/TransKit_${{needs.change-version.outputs.version}}_x64.app.tar.gz
-                  sudo mv src-tauri/target/x86_64-apple-darwin/release/bundle/macos/TransKit.app.tar.gz.sig src-tauri/target/x86_64-apple-darwin/release/bundle/macos/TransKit_${{needs.change-version.outputs.version}}_x64.app.tar.gz.sig
+                  sudo mv src-tauri/target/x86_64-apple-darwin/release/bundle/macos/FlameKit.app.tar.gz src-tauri/target/x86_64-apple-darwin/release/bundle/macos/FlameKit_${{needs.change-version.outputs.version}}_x64.app.tar.gz
+                  sudo mv src-tauri/target/x86_64-apple-darwin/release/bundle/macos/FlameKit.app.tar.gz.sig src-tauri/target/x86_64-apple-darwin/release/bundle/macos/FlameKit_${{needs.change-version.outputs.version}}_x64.app.tar.gz.sig
             - name: Upload Artifacts
               uses: actions/upload-artifact@v4
               with:
@@ -233,7 +240,7 @@ jobs:
               run: |
                   $env:TAURI_PRIVATE_KEY="${{ secrets.TAURI_PRIVATE_KEY }}"
                   $env:TAURI_KEY_PASSWORD="${{ secrets.TAURI_KEY_PASSWORD }}"
-                  pnpm tauri build -b nsis,updater --target ${{ matrix.target }}
+                  pnpm tauri build -b nsis --target ${{ matrix.target }}
             - name: Upload Artifacts
               uses: actions/upload-artifact@v4
               with:
@@ -301,10 +308,9 @@ jobs:
               run: |
                   $env:TAURI_PRIVATE_KEY="${{ secrets.TAURI_PRIVATE_KEY }}"
                   $env:TAURI_KEY_PASSWORD="${{ secrets.TAURI_KEY_PASSWORD }}"
-                  pnpm tauri build -b nsis,updater --target ${{ matrix.target }}
-                  Rename-Item .\src-tauri\target\${{ matrix.target }}\release\bundle\nsis\TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}-setup.exe TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}_fix_webview2_runtime-setup.exe
-                  Rename-Item .\src-tauri\target\${{ matrix.target }}\release\bundle\nsis\TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}-setup.nsis.zip TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}_fix_webview2_runtime-setup.nsis.zip
-                  Rename-Item .\src-tauri\target\${{ matrix.target }}\release\bundle\nsis\TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}-setup.nsis.zip.sig TransKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}_fix_webview2_runtime-setup.nsis.zip.sig
+                  pnpm tauri build -b nsis --target ${{ matrix.target }}
+                  Rename-Item .\src-tauri\target\${{ matrix.target }}\release\bundle\nsis\FlameKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}-setup.exe FlameKit_${{needs.change-version.outputs.version}}_${{ matrix.arch }}_fix_webview2_runtime-setup.exe
+                  # No .nsis.zip/.sig renames: nsis-only builds do not produce updater files.
             - name: Upload Artifacts
               uses: actions/upload-artifact@v4
               with:
@@ -448,58 +454,59 @@ jobs:
                       update.json
                       update-fix-runtime.json
 
-    homebrew:
-        name: Update Homebrew cask
-        needs: build-for-macos
-        runs-on: macos-latest
-        if: startsWith(github.ref, 'refs/tags')
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-            - name: Get Tag Name
-              run: |
-                  echo "VERSION=$(git describe --tags | sed 's/-[0-9]*-.*//g')" >> $GITHUB_ENV
-                  echo "VERSION=$(git describe --tags | sed 's/-[0-9]*-.*//g')"
-            - name: Set up Homebrew
-              uses: Homebrew/actions/setup-homebrew@master
-            - name: Set up Git
-              run: |
-                  git config --global user.email support@transkit.app
-                  git config --global user.name transkit-app
-            - name: Update Homebrew cask
-              env:
-                  HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
-              run: |
-                  brew tap transkit-app/tap
-                  brew update
-                  brew bump-cask-pr transkit-app/tap/transkit --version ${{ env.VERSION }} --no-browse --no-fork
-            - name: Auto-merge Homebrew PR
-              env:
-                  GH_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
-              run: |
-                  # brew bump-cask-pr is synchronous but the PR needs a moment to appear in the API
-                  sleep 15
+    # FlameKit: homebrew disabled - no flame-kit tap exists yet.
+    #     homebrew:
+    #         name: Update Homebrew cask
+    #         needs: build-for-macos
+    #         runs-on: macos-latest
+    #         if: startsWith(github.ref, 'refs/tags')
+    #         steps:
+    #             - name: Checkout repository
+    #               uses: actions/checkout@v4
+    #               with:
+    #                   fetch-depth: 0
+    #             - name: Get Tag Name
+    #               run: |
+    #                   echo "VERSION=$(git describe --tags | sed 's/-[0-9]*-.*//g')" >> $GITHUB_ENV
+    #                   echo "VERSION=$(git describe --tags | sed 's/-[0-9]*-.*//g')"
+    #             - name: Set up Homebrew
+    #               uses: Homebrew/actions/setup-homebrew@master
+    #             - name: Set up Git
+    #               run: |
+    #                   git config --global user.email support@transkit.app
+    #                   git config --global user.name transkit-app
+    #             - name: Update Homebrew cask
+    #               env:
+    #                   HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+    #               run: |
+    #                   brew tap transkit-app/tap
+    #                   brew update
+    #                   brew bump-cask-pr transkit-app/tap/transkit --version ${{ env.VERSION }} --no-browse --no-fork
+    #             - name: Auto-merge Homebrew PR
+    #               env:
+    #                   GH_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+    #               run: |
+    #                   # brew bump-cask-pr is synchronous but the PR needs a moment to appear in the API
+    #                   sleep 15
 
-                  # Find any open PR in the tap repo that mentions transkit
-                  PR_NUMBER=$(gh pr list \
-                      --repo transkit-app/homebrew-tap \
-                      --state open \
-                      --json number,title \
-                      --jq '.[] | select(.title | test("transkit"; "i")) | .number' \
-                      | head -1)
+    #                   # Find any open PR in the tap repo that mentions transkit
+    #                   PR_NUMBER=$(gh pr list \
+    #                       --repo transkit-app/homebrew-tap \
+    #                       --state open \
+    #                       --json number,title \
+    #                       --jq '.[] | select(.title | test("transkit"; "i")) | .number' \
+    #                       | head -1)
 
-                  if [ -z "$PR_NUMBER" ]; then
-                      echo "No open transkit PR found — version may already be current, skipping."
-                      exit 0
-                  fi
+    #                   if [ -z "$PR_NUMBER" ]; then
+    #                       echo "No open transkit PR found — version may already be current, skipping."
+    #                       exit 0
+    #                   fi
 
-                  echo "Auto-merging PR #$PR_NUMBER in transkit-app/homebrew-tap"
-                  gh pr merge "$PR_NUMBER" \
-                      --repo transkit-app/homebrew-tap \
-                      --squash \
-                      --delete-branch
+    #                   echo "Auto-merging PR #$PR_NUMBER in transkit-app/homebrew-tap"
+    #                   gh pr merge "$PR_NUMBER" \
+    #                       --repo transkit-app/homebrew-tap \
+    #                       --squash \
+    #                       --delete-branch
 
     # winget:
     #     name: Update WinGet Package
