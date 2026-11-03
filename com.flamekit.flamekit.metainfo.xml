@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>com.flamekit.flamekit</id>
+    <name>FlameKit</name>
+    <summary>A text translation, OCR and realtime monitor app</summary>
+    <developer id="com.flamekit">
+        <name>gitvcloudd</name>
+    </developer>
+    <url type="homepage">https://github.com/gitvcloudd/flame-kit</url>
+    <url type="bugtracker">https://github.com/gitvcloudd/flame-kit/issues</url>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-only</project_license>
+    <description>
+        <p>FlameKit is a cross-platform desktop app for translation, OCR, realtime speech monitoring, and TTS workflows.</p>
+        <p>Key features:</p>
+        <ul>
+            <li>Realtime speech transcription and translation monitor</li>
+            <li>Sub Mode for subtitle-style overlay</li>
+            <li>AI suggestion and context generation</li>
+            <li>Bookmark timeline and transcript auto-save</li>
+            <li>Multi-provider translation and OCR</li>
+            <li>TTS with BYO API model (free + premium providers)</li>
+        </ul>
+    </description>
+    <launchable type="desktop-id">com.flamekit.flamekit.desktop</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/1.png</image>
+            <caption>Main Window</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/2.png</image>
+            <caption>Translation Workflow</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/3.png</image>
+            <caption>Settings and Services</caption>
+        </screenshot>
+    </screenshots>
+    <releases>
+        <release version="3.1.0" date="2026-03-19">
+            <url type="details">https://github.com/transkit-app/transkit-desktop/releases/tag/3.1.0</url>
+            <description>
+                <p>First independent TransKit release line.</p>
+                <ul>
+                    <li>Enhanced realtime monitor workflow</li>
+                    <li>Added sub mode, AI suggestions, bookmarks and transcript auto-save</li>
+                    <li>Expanded TTS providers with BYO API model</li>
+                    <li>Updated project documentation and release process</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+    <content_rating type="oars-1.1"/>
+</component>
