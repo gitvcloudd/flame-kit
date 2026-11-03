@@ -726,7 +726,7 @@ export default function TargetArea(props) {
                                 {result['translation'] && (
                                     <div className='mb-4'>
                                         <span
-                                            className='font-bold select-text'
+                                            className='select-text'
                                             style={{ fontSize: `${appFontSize}px` }}
                                         >
                                             {result['translation']}

@@ -85,7 +85,7 @@ function NavItem({ item, isActive, onClick, t, badgeCount }) {
             <span className={`
                 flex items-center justify-center w-7 h-7 rounded-md transition-all duration-200 flex-shrink-0
                 ${isActive
-                    ? 'bg-gradient-to-br from-brand-500 to-accent-cyan text-white shadow-glow-sm'
+                    ? 'bg-brand-500 text-white'
                     : 'bg-content2 dark:bg-content2 text-default-500 group-hover:text-brand-500 dark:group-hover:text-brand-400'
                 }
             `}>

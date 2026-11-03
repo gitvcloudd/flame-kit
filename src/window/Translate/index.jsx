@@ -358,8 +358,8 @@ export default function Translate() {
                 }`}
                 style={{
                     background: bgAlpha >= 1
-                        ? 'hsl(var(--nextui-background))'
-                        : `hsl(var(--nextui-background) / ${bgAlpha.toFixed(2)})`,
+                        ? 'hsl(var(--nextui-content1))'
+                        : `hsl(var(--nextui-content1) / ${bgAlpha.toFixed(2)})`,
                     backdropFilter: bgAlpha < 1 && osType !== 'Darwin' ? 'blur(24px) saturate(1.6)' : undefined,
                 }}
             >
@@ -398,7 +398,7 @@ export default function Translate() {
                                 />
                             </div>
                         )}
-                        <span className='text-[12px] font-medium text-default-500 whitespace-nowrap'>
+                        <span className='text-[12px] font-medium whitespace-nowrap px-2 py-0.5 rounded-md bg-[#fef3e7] text-[#9a3412] dark:bg-[#2e2110] dark:text-[#fdba74]'>
                             {pairLabel}
                         </span>
                     </div>
@@ -454,7 +454,7 @@ export default function Translate() {
                 </div>
                 <div
                     ref={contentRef}
-                    className='px-[6px] pb-[6px] text-[12px] flex flex-col rounded-xl border border-content3 shadow-2xl overflow-hidden'
+                    className='px-[6px] pb-[6px] text-[12px] flex flex-col rounded-xl border border-content3 shadow-[0_12px_32px_rgba(0,0,0,0.10)] overflow-hidden'
                     style={collapsed ? { height: 0, padding: 0, borderWidth: 0, overflow: 'hidden' } : undefined}
                 >
                     {/* Source Area */}

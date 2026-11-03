@@ -87,15 +87,14 @@ export default function About() {
         <div className='h-full w-full overflow-y-auto'>
             {/* Hero Section */}
             <div className='flex flex-col items-center justify-center pt-2 pb-8 px-8'>
-                <div className='relative group'>
-                    <div className='absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-300'></div>
+                <div className='relative'>
                     <img
                         src='icon.png'
-                        className='relative h-24 w-24 mb-4 drop-shadow-2xl'
+                        className='relative h-24 w-24 mb-4'
                         draggable={false}
                     />
                 </div>
-                <h1 className='text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2'>
+                <h1 className='text-4xl font-bold text-foreground mb-2'>
                     FlameKit
                 </h1>
                 <Chip

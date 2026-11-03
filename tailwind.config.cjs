@@ -1,4 +1,4 @@
-// tailwind.config.cjs - Transkit Desktop
+// tailwind.config.cjs - FlameKit Desktop
 const { nextui } = require('@nextui-org/react');
 
 /** @type {import('tailwindcss').Config} */
@@ -10,10 +10,11 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // Custom font families
+            // Custom font families: one sans family everywhere, like Penwise.
+            // (Space Grotesk display headings are out.)
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
-                heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
+                heading: ['Inter', 'system-ui', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
             },
             // Custom font sizes
@@ -26,19 +27,20 @@ module.exports = {
                 'sm': ['0.8125rem', { lineHeight: '1.5' }],
                 'xs': ['0.75rem', { lineHeight: '1.4' }],
             },
-            // Brand colors
+            // Brand colors: Penwise blue, measured from the Penwise popup's
+            // Reply button (#1769f2). Flat blue, no cyan gradient.
             colors: {
                 brand: {
-                    50: '#f0f9ff',
-                    100: '#e0f2fe',
-                    200: '#bae6fd',
-                    300: '#7dd3fc',
-                    400: '#38bdf8',
-                    500: '#0ea5e9',
-                    600: '#0284c7',
-                    700: '#0369a1',
-                    800: '#075985',
-                    900: '#0c4a6e',
+                    50: '#eef5ff',
+                    100: '#d9e8ff',
+                    200: '#bcd7ff',
+                    300: '#8ebdff',
+                    400: '#5898fa',
+                    500: '#1769f2',
+                    600: '#0f56d8',
+                    700: '#0d46b0',
+                    800: '#123a8a',
+                    900: '#14336e',
                 },
                 accent: {
                     cyan: '#06b6d4',
@@ -138,20 +140,20 @@ module.exports = {
                             800: '#f1f5f9',
                             900: '#f8fafc',
                         },
-                        // Brand primary - lighter for dark mode
+                        // Brand primary - Penwise blue, lighter for dark mode
                         primary: {
-                            DEFAULT: '#38bdf8',
-                            foreground: '#0a0a0f',
-                            50: '#0c4a6e',
-                            100: '#075985',
-                            200: '#0369a1',
-                            300: '#0284c7',
-                            400: '#0ea5e9',
-                            500: '#38bdf8',
-                            600: '#7dd3fc',
-                            700: '#bae6fd',
-                            800: '#e0f2fe',
-                            900: '#f0f9ff',
+                            DEFAULT: '#4d8ff7',
+                            foreground: '#ffffff',
+                            50: '#0a2540',
+                            100: '#103a66',
+                            200: '#155088',
+                            300: '#1a66b3',
+                            400: '#2b7de0',
+                            500: '#4d8ff7',
+                            600: '#7aa8fa',
+                            700: '#a3c3fc',
+                            800: '#c3d8fd',
+                            900: '#e2ecfe',
                         },
                         // Secondary accent
                         secondary: {
@@ -174,7 +176,7 @@ module.exports = {
                             foreground: '#ffffff',
                         },
                         // Focus ring
-                        focus: '#38bdf8',
+                        focus: '#4d8ff7',
                     },
                 },
                 light: {
@@ -201,20 +203,20 @@ module.exports = {
                             800: '#1e293b',
                             900: '#0f172a',
                         },
-                        // Brand primary
+                        // Brand primary - Penwise blue
                         primary: {
-                            DEFAULT: '#0ea5e9',
+                            DEFAULT: '#1769f2',
                             foreground: '#ffffff',
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#eef5ff',
+                            100: '#d9e8ff',
+                            200: '#bcd7ff',
+                            300: '#8ebdff',
+                            400: '#5898fa',
+                            500: '#1769f2',
+                            600: '#0f56d8',
+                            700: '#0d46b0',
+                            800: '#123a8a',
+                            900: '#14336e',
                         },
                         // Secondary accent
                         secondary: {
@@ -237,7 +239,7 @@ module.exports = {
                             foreground: '#ffffff',
                         },
                         // Focus ring
-                        focus: '#0ea5e9',
+                        focus: '#1769f2',
                     },
                 },
             },
