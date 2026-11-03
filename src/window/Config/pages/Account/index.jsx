@@ -502,7 +502,7 @@ function GuestView() {
       console.error('Login error:', err)
       const msg = err?.message ?? ''
       if (msg.startsWith('oauth_port_in_use')) {
-        toast.error('Please fully quit and relaunch Transkit, then try again.', { duration: 6000 })
+        toast.error('Please fully quit and relaunch FlameKit, then try again.', { duration: 6000 })
       } else {
         toast.error('Sign in failed. Please try again.')
       }
@@ -518,12 +518,12 @@ function GuestView() {
         <CardBody className='flex flex-col gap-4'>
           <div className='flex items-center gap-3'>
             <div className='flex-1 h-px bg-content3' />
-            <span className='text-xs text-default-400 font-medium whitespace-nowrap'>Transkit Cloud</span>
+            <span className='text-xs text-default-400 font-medium whitespace-nowrap'>FlameKit Cloud</span>
             <div className='flex-1 h-px bg-content3' />
           </div>
 
           <div>
-            <h2 className='text-sm font-semibold mb-1'>Sign in to Transkit</h2>
+            <h2 className='text-sm font-semibold mb-1'>Sign in to FlameKit</h2>
             <p className='text-xs text-default-500'>
               {t('config.account.sign_in_description')}
             </p>

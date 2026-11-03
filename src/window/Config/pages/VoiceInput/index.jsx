@@ -378,9 +378,9 @@ export default function VoiceInput() {
 
                     <div className='config-item'>
                         <div>
-                            <h3>{t('config.voice_input.inject_mode', { defaultValue: 'Text Injection (Transkit windows)' })}</h3>
+                            <h3>{t('config.voice_input.inject_mode', { defaultValue: 'Text Injection (FlameKit windows)' })}</h3>
                             <p className='text-xs text-default-400 mt-0.5'>
-                                {t('config.voice_input.inject_mode_desc', { defaultValue: 'Replace: clears existing text. Append: adds after current text. Only applies when a Transkit window is focused.' })}
+                                {t('config.voice_input.inject_mode_desc', { defaultValue: 'Replace: clears existing text. Append: adds after current text. Only applies when a FlameKit window is focused.' })}
                             </p>
                         </div>
                         <Select

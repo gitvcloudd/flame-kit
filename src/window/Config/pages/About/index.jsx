@@ -96,7 +96,7 @@ export default function About() {
                     />
                 </div>
                 <h1 className='text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2'>
-                    TransKit
+                    FlameKit
                 </h1>
                 <Chip
                     color='primary'
@@ -114,13 +114,6 @@ export default function About() {
             {/* Main Actions Grid */}
             <div className='px-8 pb-6'>
                 <div className='grid grid-cols-2 gap-3 mb-4'>
-                    <ActionCard
-                        icon={BsGlobe}
-                        title={t('config.about.website')}
-                        description='transkit.app'
-                        onClick={() => open('https://transkit.app')}
-                        color='primary'
-                    />
                     <ActionCard
                         icon={BsGithub}
                         title={t('config.about.github')}
@@ -281,7 +274,7 @@ export default function About() {
                                 </Link>
                             </p>
                             <p className='text-xs text-default-500 leading-relaxed'>
-                                TransKit is built upon the excellent work of the Pot community. We're committed to
+                                FlameKit is built upon the excellent work of the Pot community. We're committed to
                                 open-source development and giving back to the community.
                             </p>
                         </div>

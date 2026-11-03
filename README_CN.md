@@ -1,8 +1,8 @@
-# TransKit Desktop
+# FlameKit Desktop
 
-TransKit Desktop 是一款支持 Windows、macOS、Linux 的跨平台翻译、OCR、实时监控与 TTS 应用。
+FlameKit Desktop 是一款支持 Windows、macOS、Linux 的跨平台翻译、OCR、实时监控与 TTS 应用。
 
-本项目基于 [Pot Desktop](https://github.com/pot-app/pot-desktop) fork，使用 GPL-3.0-only 协议发布。
+本项目基于 [TransKit](https://github.com/transkit-app/transkit-desktop) fork，而 TransKit 基于 [Pot Desktop](https://github.com/pot-app/pot-desktop) fork，使用 GPL-3.0-only 协议发布。
 
 <div align="center">
 
@@ -22,7 +22,7 @@ TransKit Desktop 是一款支持 Windows、macOS、Linux 的跨平台翻译、OC
 
 - [使用说明](#使用说明)
 - [键盘快捷键](#键盘快捷键)
-- [TransKit 新增能力](#transkit-新增能力)
+- [FlameKit 新增能力](#flamekit-新增能力)
 - [安装指南](#安装指南)
 - [从源码构建](#从源码构建)
 - [发布新版本（全平台）](#发布新版本全平台)
@@ -64,9 +64,9 @@ TransKit Desktop 是一款支持 Windows、macOS、Linux 的跨平台翻译、OC
 
 `Ctrl+Alt+` 前缀在 Windows、macOS、Linux 三端均未被系统占用，且有意规避了以下冲突热键：`Ctrl+Alt+Del`（Windows 任务管理器）、`Ctrl+Alt+T`（Linux 终端）、`Ctrl+Alt+L`（Linux 锁屏），以及浏览器 / IDE 中常用的 `Ctrl+Shift+I`、`Ctrl+Shift+R`、`Ctrl+\`` 等。
 
-## TransKit 新增能力
+## FlameKit 新增能力
 
-相比上游 Pot，TransKit 重点增强了实时场景与 AI 工作流。
+相比上游 Pot，FlameKit 重点增强了实时场景与 AI 工作流。
 
 ### Realtime Monitor
 
@@ -88,36 +88,7 @@ TransKit Desktop 是一款支持 Windows、macOS、Linux 的跨平台翻译、OC
 
 ## 安装指南
 
-Release 页面：<https://github.com/transkit-app/transkit-desktop/releases/latest>
-
-### Windows
-
-1. 从 Releases 下载最新 `.exe` 安装包。
-2. 按架构选择：
-   - x64：`TransKit_{version}_x64-setup.exe`
-   - x86：`TransKit_{version}_x86-setup.exe`
-   - arm64：`TransKit_{version}_arm64-setup.exe`
-3. 运行安装程序。
-
-若系统缺少 WebView2，可使用：
-
-- `TransKit_{version}_{arch}_fix_webview2_runtime-setup.exe`
-
-### macOS
-
-1. 从 Releases 下载最新 `.dmg`。
-2. 按架构选择：
-   - Apple Silicon：`TransKit_{version}_aarch64.dmg`
-   - Intel：`TransKit_{version}_x64.dmg`
-3. 打开并安装。
-
-### Linux
-
-1. 从 Releases 下载对应架构安装包。
-2. CI 产物包含：
-   - `.deb`
-   - `.rpm`
-   - `.AppImage`（x86_64）
+FlameKit 尚未发布安装包。如需试用，请从源码构建（见[从源码构建](#从源码构建)一节）。
 
 ## 从源码构建
 
