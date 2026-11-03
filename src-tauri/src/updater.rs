@@ -4,6 +4,23 @@ use log::{info, warn};
 use tauri::Manager;
 
 pub fn check_update(app_handle: tauri::AppHandle) {
+    // Tauri only enables the `updater` cargo feature when updater.active is
+    // true in tauri.conf.json. FlameKit currently ships with it off (no
+    // signing key or update feed yet), so the updater-dependent body must be
+    // compiled out; otherwise the whole build fails with E0433.
+    #[cfg(not(updater))]
+    {
+        let _ = app_handle;
+        info!("[updater] Updater is disabled, skipping update check");
+        return;
+    }
+    #[cfg(updater)]
+    check_update_inner(app_handle);
+}
+
+/// The real check, only compiled when the updater feature is on.
+#[cfg(updater)]
+fn check_update_inner(app_handle: tauri::AppHandle) {
     let enable = match get("check_update") {
         Some(v) => v.as_bool().unwrap(),
         None => {
