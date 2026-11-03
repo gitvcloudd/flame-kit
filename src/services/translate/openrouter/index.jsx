@@ -38,7 +38,7 @@ export async function translate(text, from, to, options) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
         'HTTP-Referer': 'https://github.com/gitvcloudd/flame-kit',
-        'X-Title': 'TransKit',
+        'X-Title': 'FlameKit',
     };
 
     const body = {

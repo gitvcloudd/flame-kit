@@ -55,10 +55,10 @@ function HeaderThemeToggle() {
 function Logo() {
     return (
         <div className="flex items-center gap-3 px-4" data-tauri-drag-region="true">
-            <img src="icon.png" alt="TransKit" className="w-10 h-10" />
+            <img src="icon.png" alt="FlameKit" className="w-10 h-10" />
             <div className="flex flex-col">
                 <span className="text-base font-heading font-semibold text-gradient">
-                    TransKit
+                    FlameKit
                 </span>
                 <span className="text-[10px] text-default-400 dark:text-default-500">
                     Desktop {appVersion ? `- V${appVersion}` : ''}
