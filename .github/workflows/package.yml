@@ -35,7 +35,7 @@ jobs:
 
                   sed -i "s/version = \"0.0.0\"/version = \"${{ steps.outputstep.outputs.VERSION }}\"/g" src-tauri/Cargo.toml
 
-                  echo "${{ steps.outputstep.outputs.VERSION }}
+                  echo "${{ steps.outputstep.outputs.VERSION }}"
 
             # FlameKit builds local-only: no cloud credentials. The Supabase
             # secret lines were removed so no secret can leak through the
