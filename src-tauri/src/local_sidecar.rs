@@ -87,7 +87,7 @@ pub struct SidecarConfig {
 fn app_support_dir() -> PathBuf {
     dirs::config_dir()
         .unwrap_or_else(|| PathBuf::from("."))
-        .join("com.transkit.desktop")
+        .join("com.flamekit.desktop")
 }
 
 fn sidecar_env_dir() -> PathBuf {

@@ -34,7 +34,7 @@
             }
         },
         "updater": {
-            "active": true,
+            "active": false,
             "dialog": false,
             "endpoints": [
                 "https://github.com/transkit-app/transkit-desktop/releases/download/updater/update-fix-runtime.json",

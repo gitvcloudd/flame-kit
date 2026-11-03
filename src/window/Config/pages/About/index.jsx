@@ -125,21 +125,21 @@ export default function About() {
                         icon={BsGithub}
                         title={t('config.about.github')}
                         description='Source Code'
-                        onClick={() => open('https://github.com/transkit-app/transkit-desktop')}
+                        onClick={() => open('https://github.com/gitvcloudd/flame-kit')}
                         color='default'
                     />
                     <ActionCard
                         icon={BsChatDots}
                         title={t('config.about.feedback')}
                         description='Issues & Suggestions'
-                        onClick={() => open('https://github.com/transkit-app/transkit-desktop/issues')}
+                        onClick={() => open('https://github.com/gitvcloudd/flame-kit/issues')}
                         color='warning'
                     />
                     <ActionCard
                         icon={BsPeople}
                         title={t('config.about.community')}
                         description='Join Us'
-                        onClick={() => open('https://github.com/transkit-app/transkit-desktop/discussions')}
+                        onClick={() => open('https://github.com/gitvcloudd/flame-kit/discussions')}
                         color='secondary'
                     />
                 </div>

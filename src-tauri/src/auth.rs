@@ -27,12 +27,12 @@ pub async fn start_oauth_server(window: tauri::Window, port: u16) -> Result<(), 
 
             let body = r#"<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>TransKit</title></head>
+<head><meta charset="utf-8"><title>FlameKit</title></head>
 <body style="font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#0f172a;color:#f8fafc">
   <div style="text-align:center">
     <div style="font-size:3rem;margin-bottom:1rem">✓</div>
     <h2 style="margin:0 0 .5rem">Authentication successful!</h2>
-    <p style="color:#94a3b8;margin:0">You can close this tab and return to TransKit.</p>
+    <p style="color:#94a3b8;margin:0">You can close this tab and return to FlameKit.</p>
   </div>
 </body>
 </html>"#;

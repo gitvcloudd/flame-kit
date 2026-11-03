@@ -73,7 +73,7 @@ pub fn update_tray(app_handle: tauri::AppHandle, mut language: String, mut copy_
         warn!("[tray] set_menu failed: {:?}", e);
     }
     #[cfg(not(target_os = "linux"))]
-    if let Err(e) = tray_handle.set_tooltip(&format!("TransKit {}", app_handle.package_info().version)) {
+    if let Err(e) = tray_handle.set_tooltip(&format!("FlameKit {}", app_handle.package_info().version)) {
         warn!("[tray] set_tooltip failed: {:?}", e);
     }
 
@@ -275,8 +275,8 @@ fn stt_service_display_name(instance_key: &str) -> String {
         "gladia_stt"               => "Gladia",
         "deepgram_stt"             => "Deepgram",
         "custom_stt"               => "Custom WebSocket",
-        "transkit_cloud_stt"       => "TransKit Cloud",
-        "transkit_cloud_dictation" => "TransKit Dictation",
+        "transkit_cloud_stt"       => "FlameKit Cloud",
+        "transkit_cloud_dictation" => "FlameKit Dictation",
         "local_sidecar_stt"        => "Local Sidecar",
         "onnx_stt"                 => "ONNX (Offline)",
         _                          => service_name,

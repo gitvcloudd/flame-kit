@@ -1,10 +1,10 @@
 [package]
-name = "transkit"
+name = "flamekit"
 version = "0.0.0"
-description = "TransKit - A cross-platform translation and OCR software"
-authors = ["transkit-app"]
+description = "FlameKit - A cross-platform translation and OCR software"
+authors = ["gitvcloudd"]
 license = "GPL-3.0-only"
-repository = "https://github.com/transkit-app/transkit-desktop"
+repository = "https://github.com/gitvcloudd/flame-kit"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

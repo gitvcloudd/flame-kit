@@ -9,9 +9,9 @@ use walkdir::WalkDir;
 use zip::read::ZipArchive;
 use zip::write::SimpleFileOptions;
 
-const APP_CONFIG_DIR_CURRENT: &str = "com.transkit.desktop";
+const APP_CONFIG_DIR_CURRENT: &str = "com.flamekit.desktop";
 const APP_CONFIG_DIR_LEGACY: &str = "com.pot-app.desktop";
-const WEBDAV_DIR_CURRENT: &str = "transkit-app";
+const WEBDAV_DIR_CURRENT: &str = "flame-kit";
 const WEBDAV_DIR_LEGACY: &str = "pot-app";
 
 fn base_config_dir() -> Result<PathBuf, Error> {

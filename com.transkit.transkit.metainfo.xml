@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>com.transkit.transkit</id>
-    <name>TransKit</name>
+    <id>com.flamekit.flamekit</id>
+    <name>FlameKit</name>
     <summary>A text translation, OCR and realtime monitor app</summary>
-    <developer id="com.transkit">
-        <name>transkit-app</name>
+    <developer id="com.flamekit">
+        <name>gitvcloudd</name>
     </developer>
-    <url type="homepage">https://transkit.app/</url>
-    <url type="bugtracker">https://github.com/transkit-app/transkit-desktop/issues</url>
+    <url type="homepage">https://github.com/gitvcloudd/flame-kit</url>
+    <url type="bugtracker">https://github.com/gitvcloudd/flame-kit/issues</url>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-only</project_license>
     <description>
-        <p>TransKit is a cross-platform desktop app for translation, OCR, realtime speech monitoring, and TTS workflows.</p>
+        <p>FlameKit is a cross-platform desktop app for translation, OCR, realtime speech monitoring, and TTS workflows.</p>
         <p>Key features:</p>
         <ul>
             <li>Realtime speech transcription and translation monitor</li>
@@ -22,18 +22,18 @@
             <li>TTS with BYO API model (free + premium providers)</li>
         </ul>
     </description>
-    <launchable type="desktop-id">com.transkit.transkit.desktop</launchable>
+    <launchable type="desktop-id">com.flamekit.flamekit.desktop</launchable>
     <screenshots>
         <screenshot type="default">
-            <image>https://github.com/transkit-app/transkit-desktop/raw/master/asset/1.png</image>
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/1.png</image>
             <caption>Main Window</caption>
         </screenshot>
         <screenshot>
-            <image>https://github.com/transkit-app/transkit-desktop/raw/master/asset/2.png</image>
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/2.png</image>
             <caption>Translation Workflow</caption>
         </screenshot>
         <screenshot>
-            <image>https://github.com/transkit-app/transkit-desktop/raw/master/asset/3.png</image>
+            <image>https://github.com/gitvcloudd/flame-kit/raw/main/asset/3.png</image>
             <caption>Settings and Services</caption>
         </screenshot>
     </screenshots>

@@ -2,7 +2,7 @@ import { invoke } from '@tauri-apps/api';
 import { Body, fetch } from '@tauri-apps/api/http';
 import { appConfigDir, join } from '@tauri-apps/api/path';
 
-const APP_FOLDER_CURRENT = 'transkit-app';
+const APP_FOLDER_CURRENT = 'flame-kit';
 const APP_FOLDER_LEGACY = 'pot-app';
 
 export async function backup(token, name) {

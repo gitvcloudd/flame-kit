@@ -227,7 +227,7 @@ export default function Updater() {
                                 className='text-sm text-primary underline underline-offset-2 cursor-pointer hover:opacity-75 transition-opacity'
                                 onClick={() =>
                                     openUrl(
-                                        'https://github.com/transkit-app/transkit-desktop/releases/latest'
+                                        'https://github.com/gitvcloudd/flame-kit/releases/latest'
                                     ).catch(() => {})
                                 }
                             >

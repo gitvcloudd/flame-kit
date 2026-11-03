@@ -66,7 +66,7 @@ fn platform_get_frontmost_app() -> Option<String> {
         .ok()?;
     if output.status.success() {
         let name = String::from_utf8_lossy(&output.stdout).trim().to_string();
-        // Exclude TransKit itself
+        // Exclude FlameKit itself
         if name.is_empty() || name.to_lowercase().contains("transkit") {
             None
         } else {

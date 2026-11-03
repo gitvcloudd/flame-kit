@@ -37,7 +37,7 @@ export async function translate(text, from, to, options) {
     const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`,
-        'HTTP-Referer': 'https://github.com/transkit-app/transkit-desktop',
+        'HTTP-Referer': 'https://github.com/gitvcloudd/flame-kit',
         'X-Title': 'TransKit',
     };
 

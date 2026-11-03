@@ -94,14 +94,14 @@ pub struct OnnxSttConfig {
 fn onnx_engine_dir() -> PathBuf {
     dirs::config_dir()
         .unwrap_or_else(|| PathBuf::from("."))
-        .join("com.transkit.desktop")
+        .join("com.flamekit.desktop")
         .join("onnx-engine")
 }
 
 fn onnx_models_dir() -> PathBuf {
     dirs::config_dir()
         .unwrap_or_else(|| PathBuf::from("."))
-        .join("com.transkit.desktop")
+        .join("com.flamekit.desktop")
         .join("onnx-models")
 }
 
@@ -113,7 +113,7 @@ fn setup_marker() -> PathBuf {
 fn sidecar_python() -> PathBuf {
     dirs::config_dir()
         .unwrap_or_default()
-        .join("com.transkit.desktop")
+        .join("com.flamekit.desktop")
         .join("sidecar-env")
         .join("bin")
         .join("python3")

@@ -7,18 +7,18 @@ async function resolveUpdater() {
     }
 
     const TOKEN = process.env.GITHUB_TOKEN;
-    const REPO_OWNER = process.env.REPO_OWNER || 'transkit-app';
-    const REPO_NAME = process.env.REPO_NAME || 'transkit-desktop';
+    const REPO_OWNER = process.env.REPO_OWNER || 'gitvcloudd';
+    const REPO_NAME = process.env.REPO_NAME || 'flame-kit';
 
     let version = await getVersion(TOKEN, REPO_OWNER, REPO_NAME);
     let changelog = await getChangeLog(TOKEN, REPO_OWNER, REPO_NAME);
 
-    const windows_x86_64 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_x64_fix_webview2_runtime-setup.nsis.zip`;
-    const windows_x86_64_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_x64_fix_webview2_runtime-setup.nsis.zip.sig`);
-    const windows_i686 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_x86_fix_webview2_runtime-setup.nsis.zip`;
-    const windows_i686_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_x86_fix_webview2_runtime-setup.nsis.zip.sig`);
-    const windows_aarch64 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_arm64_fix_webview2_runtime-setup.nsis.zip`;
-    const windows_aarch64_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/TransKit_${version}_arm64_fix_webview2_runtime-setup.nsis.zip.sig`);
+    const windows_x86_64 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_x64_fix_webview2_runtime-setup.nsis.zip`;
+    const windows_x86_64_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_x64_fix_webview2_runtime-setup.nsis.zip.sig`);
+    const windows_i686 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_x86_fix_webview2_runtime-setup.nsis.zip`;
+    const windows_i686_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_x86_fix_webview2_runtime-setup.nsis.zip.sig`);
+    const windows_aarch64 = `https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_arm64_fix_webview2_runtime-setup.nsis.zip`;
+    const windows_aarch64_sig = await getSignature(`https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${version}/FlameKit_${version}_arm64_fix_webview2_runtime-setup.nsis.zip.sig`);
 
     let updateData = {
         name: version,
