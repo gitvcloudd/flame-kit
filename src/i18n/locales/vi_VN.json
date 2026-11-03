@@ -241,6 +241,10 @@
         "least": "Vui lòng giữ ít nhất một dịch vụ",
         "add_builtin_service": "Thêm dịch vụ có sẵn",
         "add_external_service": "Thêm tiện ích mở rộng",
+        "group_free": "Miễn phí",
+        "group_key": "Cần API key",
+        "group_local": "Chạy local",
+        "group_other": "Khác",
         "add_service": "Thêm dịch vụ",
         "test_failed": "Kiểm tra thất bại",
         "install_plugin": "Cài đặt Plugin",
@@ -1196,7 +1200,15 @@
       "loading": "Đang dịch...",
       "show_other_translations": "Xem các bản dịch khác",
       "hide_other_translations": "Ẩn các bản dịch khác",
-      "input_placeholder": "Nhập văn bản cần dịch..."
+      "input_placeholder": "Nhập văn bản cần dịch...",
+      "reply": "Trả lời",
+      "reply_placeholder": "Nhập câu trả lời...",
+      "reply_send": "Dịch và dán",
+      "reply_sent": "Đã dán câu trả lời",
+      "reply_no_source": "Không xác định được ngôn ngữ nguồn",
+      "reply_paste_failed": "Không dán được vào app gốc, đã sao chép vào clipboard",
+      "collapse": "Thu gọn",
+      "expand": "Mở rộng"
     },
     "recognize": {
       "recognize": "Nhận dạng",

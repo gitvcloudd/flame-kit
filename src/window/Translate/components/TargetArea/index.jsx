@@ -16,6 +16,7 @@ import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import { sendNotification } from '@tauri-apps/api/notification';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { writeText } from '@tauri-apps/api/clipboard';
+import { invoke } from '@tauri-apps/api/tauri';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { TbTransformFilled } from 'react-icons/tb';
 import { HiOutlineVolumeUp } from 'react-icons/hi';
@@ -376,6 +377,69 @@ export default function TargetArea(props) {
         }
     };
 
+    // Penwise-style reply: type a reply in your own language, translate it back
+    // to the source language, and paste it into the app the text came from.
+    // The external app is recorded by the Rust side when the translate hotkey
+    // fires; if nothing was recorded, fall back to copying to the clipboard.
+    const [showReply, setShowReply] = useState(false);
+    const [replyText, setReplyText] = useState('');
+    const [replySending, setReplySending] = useState(false);
+    const [replyError, setReplyError] = useState('');
+
+    const handleReplySend = async () => {
+        const text = replyText.trim();
+        if (!text) return;
+        setReplySending(true);
+        setReplyError('');
+        try {
+            const replyFrom = targetLanguage;
+            const replyTo = sourceLanguage === 'auto' ? detectLanguage : sourceLanguage;
+            if (!replyTo) {
+                throw new Error(t('translate.reply_no_source'));
+            }
+            const serviceName = getServiceName(currentTranslateServiceInstanceKey);
+            const instanceConfig = serviceInstanceConfigMap[currentTranslateServiceInstanceKey];
+            let translated;
+            if (whetherPluginService(currentTranslateServiceInstanceKey)) {
+                const pluginInfo = pluginList['translate'][serviceName];
+                if (!(replyFrom in pluginInfo.language) || !(replyTo in pluginInfo.language)) {
+                    throw new Error('Language not supported');
+                }
+                const [func, utils] = await invoke_plugin('translate', serviceName);
+                const v = await func(text, pluginInfo.language[replyFrom], pluginInfo.language[replyTo], {
+                    config: instanceConfig,
+                    utils,
+                });
+                translated = typeof v === 'string' ? v.trim() : v.translation;
+            } else {
+                const LanguageEnum = builtinServices[serviceName].Language;
+                if (!(replyFrom in LanguageEnum) || !(replyTo in LanguageEnum)) {
+                    throw new Error('Language not supported');
+                }
+                const v = await builtinServices[serviceName].translate(
+                    text,
+                    LanguageEnum[replyFrom],
+                    LanguageEnum[replyTo],
+                    { config: instanceConfig, setResult: () => {} }
+                );
+                translated = typeof v === 'string' ? v.trim() : v.translation;
+            }
+            try {
+                await invoke('voice_focus_and_paste', { text: translated });
+                toast.success(t('translate.reply_sent'), { style: toastStyleRef.current });
+                setReplyText('');
+                setShowReply(false);
+            } catch (pasteError) {
+                await writeText(translated);
+                setReplyError(t('translate.reply_paste_failed'));
+            }
+        } catch (e) {
+            setReplyError(e.toString());
+        } finally {
+            setReplySending(false);
+        }
+    };
+
     const [boundRef, bounds] = useMeasure({ scroll: true });
     const previousHide = useRef(hide);
     const collectionServiceListKey = (collectionServiceList ?? []).join('|');
@@ -392,39 +456,7 @@ export default function TargetArea(props) {
 
     const headerButtonsContent = useMemo(() => (
         <div className='flex gap-0.5'>
-            {/* speak button */}
-            <Tooltip content={t('translate.speak')}>
-                <Button
-                    isIconOnly
-                    variant='light'
-                    size='sm'
-                    isDisabled={!result || (typeof result === 'string' && result === '')}
-                    className='h-[26px] w-[26px] min-w-0 bg-transparent'
-                    onPress={() => {
-                        handleSpeak().catch((e) => {
-                            toast.error(e.toString(), { style: toastStyleRef.current });
-                        });
-                    }}
-                >
-                    <HiOutlineVolumeUp className='text-[16px]' />
-                </Button>
-            </Tooltip>
-            {/* copy button */}
-            <Tooltip content={t('translate.copy')}>
-                <Button
-                    isIconOnly
-                    variant='light'
-                    size='sm'
-                    isDisabled={!result || (typeof result === 'string' && result === '')}
-                    className='h-[26px] w-[26px] min-w-0 bg-transparent'
-                    onPress={() => {
-                        const textToCopy = typeof result === 'string' ? result : result.translation || '';
-                        writeText(textToCopy);
-                    }}
-                >
-                    <MdContentCopy className='text-[16px]' />
-                </Button>
-            </Tooltip>
+            {/* Speak and copy moved to the footer (Penwise-style). */}
             {/* translate back button */}
             <Tooltip content={t('translate.translate_back')}>
                 <Button
@@ -665,6 +697,14 @@ export default function TargetArea(props) {
                 <div ref={boundRef}>
                     {/* result content with dynamic max height and scrollbar */}
                     <CardBody className={`p-[8px] ${hide ? 'h-0 p-0' : 'max-h-[800px] overflow-y-auto'}`}>
+                        {/* Penwise-style: the original text, small and gray, above the translation.
+                            SourceArea is hidden in selection mode, so this is the only place the
+                            original shows in the popup. */}
+                        {windowType === '[SELECTION_TRANSLATE]' && sourceText.trim() !== '' && (
+                            <div className='mb-2 text-[12px] text-default-400 select-text whitespace-pre-wrap break-words'>
+                                {sourceText}
+                            </div>
+                        )}
                         {sourceText.trim() === '' && windowType === '[SELECTION_TRANSLATE]' ? (
                             <div className='flex justify-start items-center h-[21px]'>
                                 <PulseLoader size={5} color='hsl(var(--nextui-default-400))' speedMultiplier={0.8} />
@@ -676,7 +716,8 @@ export default function TargetArea(props) {
                         ) : typeof result === 'string' && result !== '' ? (
                             <textarea
                                 ref={textAreaRef}
-                                className={`text-[14px] h-0 resize-none bg-transparent select-text outline-none w-full`}
+                                className={`h-0 resize-none bg-transparent select-text outline-none w-full`}
+                                style={{ fontSize: `${appFontSize}px` }}
                                 readOnly
                                 value={result}
                             />
@@ -851,6 +892,72 @@ export default function TargetArea(props) {
                     </CardBody>
                 </div>
             </animated.div>
+            {/* Penwise-style footer: copy, read aloud, reply */}
+            <CardFooter className='flex flex-col gap-2 p-[8px] pt-0'>
+                <div className='flex gap-2'>
+                    <Button
+                        size='sm'
+                        variant='flat'
+                        isDisabled={!result || (typeof result === 'string' && result === '')}
+                        startContent={<MdContentCopy className='text-[16px]' />}
+                        onPress={() => {
+                            const textToCopy = typeof result === 'string' ? result : result.translation || '';
+                            writeText(textToCopy);
+                        }}
+                    >
+                        {t('translate.copy')}
+                    </Button>
+                    <Button
+                        size='sm'
+                        variant='flat'
+                        isDisabled={!result || (typeof result === 'string' && result === '')}
+                        startContent={<HiOutlineVolumeUp className='text-[16px]' />}
+                        onPress={() => {
+                            handleSpeak().catch((e) => {
+                                toast.error(e.toString(), { style: toastStyleRef.current });
+                            });
+                        }}
+                    >
+                        {t('translate.speak')}
+                    </Button>
+                    <Button
+                        size='sm'
+                        variant='flat'
+                        color='primary'
+                        onPress={() => {
+                            setReplyError('');
+                            setShowReply(!showReply);
+                        }}
+                    >
+                        {t('translate.reply')}
+                    </Button>
+                </div>
+                {showReply && (
+                    <div className='flex flex-col gap-2 w-full'>
+                        <textarea
+                            className='text-[14px] bg-content1 border-1 border-content3 rounded-[8px] p-2 resize-none outline-none w-full'
+                            rows={2}
+                            placeholder={t('translate.reply_placeholder')}
+                            value={replyText}
+                            onChange={(e) => setReplyText(e.target.value)}
+                        />
+                        <div className='flex gap-2 items-center'>
+                            <Button
+                                size='sm'
+                                color='primary'
+                                isLoading={replySending}
+                                isDisabled={replyText.trim() === ''}
+                                onPress={handleReplySend}
+                            >
+                                {t('translate.reply_send')}
+                            </Button>
+                            {replyError !== '' && (
+                                <span className='text-[12px] text-danger'>{replyError}</span>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </CardFooter>
         </Card>
     );
 }

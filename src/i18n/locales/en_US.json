@@ -241,6 +241,10 @@
         "least": "Please keep at least one",
         "add_builtin_service": "Add Builtin Service",
         "add_external_service": "Add Extension",
+        "group_free": "Free",
+        "group_key": "Requires API key",
+        "group_local": "Runs locally",
+        "group_other": "Other",
         "add_service": "Add Service",
         "test_failed": "Test Failed",
         "install_plugin": "Install Plugin",
@@ -1146,7 +1150,15 @@
       "loading": "Translating...",
       "show_other_translations": "View other translations",
       "hide_other_translations": "Hide other translations",
-      "input_placeholder": "Enter text to translate..."
+      "input_placeholder": "Enter text to translate...",
+      "reply": "Reply",
+      "reply_placeholder": "Type your reply...",
+      "reply_send": "Translate & paste",
+      "reply_sent": "Reply pasted",
+      "reply_no_source": "Could not detect the source language",
+      "reply_paste_failed": "Could not paste into the original app, copied to clipboard instead",
+      "collapse": "Collapse",
+      "expand": "Expand"
     },
     "recognize": {
       "recognize": "Recognize",

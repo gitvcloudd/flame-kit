@@ -3,17 +3,19 @@ import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import { appWindow, currentMonitor, LogicalSize } from '@tauri-apps/api/window';
 import { appConfigDir, join } from '@tauri-apps/api/path';
 import { convertFileSrc } from '@tauri-apps/api/tauri';
-import { Spacer, Button } from '@nextui-org/react';
+import { Spacer, Button, Tooltip } from '@nextui-org/react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import React, { useState, useEffect, useRef } from 'react';
 import { listen } from '@tauri-apps/api/event';
 import { BsPinFill } from 'react-icons/bs';
+import { BiChevronUp, BiChevronDown } from 'react-icons/bi';
 import { IoMdCheckmark } from 'react-icons/io';
 
-import LanguageArea from './components/LanguageArea';
+import LanguageArea, { sourceLanguageAtom, targetLanguageAtom } from './components/LanguageArea';
 import SourceArea, { windowTypeAtom } from './components/SourceArea';
 import TargetArea from './components/TargetArea';
 import { useAtomValue } from 'jotai';
+import { useTranslation } from 'react-i18next';
 import { getServiceName, whetherPluginService } from '../../utils/service_instance';
 import * as builtinServices from '../../services/translate';
 import { osType } from '../../utils/env';
@@ -94,6 +96,13 @@ export default function Translate() {
     const [collectionServiceInstanceList] = useConfig('collection_service_list', []);
     const [hideLanguage] = useConfig('hide_language', false);
     const [pined, setPined] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
+    const { t } = useTranslation();
+    const sourceLanguage = useAtomValue(sourceLanguageAtom);
+    const targetLanguage = useAtomValue(targetLanguageAtom);
+    // Penwise-style pair label, e.g. "EN → VI" (source auto shows as "Auto").
+    const shortLangCode = (code) => (code === 'auto' ? 'Auto' : (code || '').split('_')[0].toUpperCase());
+    const pairLabel = `${shortLangCode(sourceLanguage ?? 'auto')} → ${shortLangCode(targetLanguage ?? '')}`;
     const [pluginList, setPluginList] = useState(null);
     const [serviceInstanceConfigMap, setServiceInstanceConfigMap] = useState(null);
     const [headerButtons, setHeaderButtons] = useState(null);
@@ -369,117 +378,84 @@ export default function Translate() {
                     />
                 )}
 
-                <div className={`h-[32px] w-full flex ${osType === 'Darwin' ? 'justify-between' : 'justify-between'}`}>
-                    {/* Left side: Empty space on macOS (system buttons), Action buttons on Windows */}
-                    <div className='flex gap-1 items-center pl-1'>
-                        {osType === 'Darwin' ? (
-                            // macOS: leave space for system buttons
-                            <div className='w-[70px]' />
-                        ) : (
-                            // Windows: show action buttons on left
-                            <div id='translate-actions' className='flex gap-0.5'></div>
+                {/* Penwise-style header: service icon + pair label, service actions, collapse, pin, close.
+                    The language dropdowns stay in their row below: the header center is the window
+                    drag strip, so interactive controls placed there would not receive clicks. */}
+                <div className='h-[32px] w-full flex items-center justify-between gap-1 px-1'>
+                    {/* Left: service icon + language pair label */}
+                    <div className='flex gap-1.5 items-center min-w-0 pl-1'>
+                        {osType === 'Darwin' && <div className='w-[70px] shrink-0' />}
+                        {translateServiceInstanceList && translateServiceInstanceList[selectedProviderIndex] && (
+                            <div className='flex items-center px-1.5 py-0.5 bg-content2/50 rounded-md shrink-0'>
+                                <img
+                                    src={
+                                        whetherPluginService(translateServiceInstanceList[selectedProviderIndex])
+                                            ? pluginList['translate'][getServiceName(translateServiceInstanceList[selectedProviderIndex])].icon
+                                            : builtinServices[getServiceName(translateServiceInstanceList[selectedProviderIndex])].info.icon
+                                    }
+                                    className='h-[16px] w-[16px]'
+                                    alt=''
+                                />
+                            </div>
                         )}
+                        <span className='text-[12px] font-medium text-default-500 whitespace-nowrap'>
+                            {pairLabel}
+                        </span>
                     </div>
 
-                    {/* Right side: Pin + Actions on macOS, Pin + Close on Windows */}
-                    <div className='flex gap-1 items-center pr-1'>
-                        {osType === 'Darwin' ? (
-                            // macOS: show action buttons + pin on right
-                            <>
-                                <div id='translate-actions' className='flex gap-0.5 items-center'>
-                                    {translateServiceInstanceList && translateServiceInstanceList[selectedProviderIndex] && (
-                                        <div className='flex items-center px-1.5 py-0.5 bg-content2/50 rounded-md mr-1'>
-                                            <img
-                                                src={
-                                                    whetherPluginService(translateServiceInstanceList[selectedProviderIndex])
-                                                        ? pluginList['translate'][getServiceName(translateServiceInstanceList[selectedProviderIndex])].icon
-                                                        : builtinServices[getServiceName(translateServiceInstanceList[selectedProviderIndex])].info.icon
-                                                }
-                                                className='h-[16px] w-[16px]'
-                                                alt=''
-                                            />
-                                        </div>
-                                    )}
-                                    {headerButtons}
-                                </div>
-                                <Button
-                                    isIconOnly
-                                    size='sm'
-                                    variant='light'
-                                    className='h-[26px] w-[26px] min-w-0 bg-transparent'
-                                    onPress={() => {
-                                        if (pined) {
-                                            if (closeOnBlur) {
-                                                unlisten = listenBlur();
-                                            }
-                                            appWindow.setAlwaysOnTop(false);
-                                        } else {
-                                            unlistenBlur();
-                                            appWindow.setAlwaysOnTop(true);
-                                        }
-                                        setPined(!pined);
-                                    }}
-                                >
-                                    <BsPinFill className={`text-[16px] ${pined ? 'text-primary' : 'text-default-400'}`} />
-                                </Button>
-                            </>
-                        ) : (
-                            // Windows: show pin + close
-                            <>
-                                <div className='flex gap-0.5 items-center'>
-                                    {translateServiceInstanceList && translateServiceInstanceList[selectedProviderIndex] && (
-                                        <div className='flex items-center px-1.5 py-0.5 bg-content2/50 rounded-md mr-1'>
-                                            <img
-                                                src={
-                                                    whetherPluginService(translateServiceInstanceList[selectedProviderIndex])
-                                                        ? pluginList['translate'][getServiceName(translateServiceInstanceList[selectedProviderIndex])].icon
-                                                        : builtinServices[getServiceName(translateServiceInstanceList[selectedProviderIndex])].info.icon
-                                                }
-                                                className='h-[16px] w-[16px]'
-                                                alt=''
-                                            />
-                                        </div>
-                                    )}
-                                    {headerButtons}
-                                </div>
-                                <Button
-                                    isIconOnly
-                                    size='sm'
-                                    variant='light'
-                                    className='h-[26px] w-[26px] min-w-0 bg-transparent'
-                                    onPress={() => {
-                                        if (pined) {
-                                            if (closeOnBlur) {
-                                                unlisten = listenBlur();
-                                            }
-                                            appWindow.setAlwaysOnTop(false);
-                                        } else {
-                                            unlistenBlur();
-                                            appWindow.setAlwaysOnTop(true);
-                                        }
-                                        setPined(!pined);
-                                    }}
-                                >
-                                    <BsPinFill className={`text-[16px] ${pined ? 'text-primary' : 'text-default-400'}`} />
-                                </Button>
-                                <Button
-                                    isIconOnly
-                                    size='sm'
-                                    variant='light'
-                                    className='h-[26px] w-[26px] min-w-0 bg-transparent'
-                                    onPress={() => {
-                                        void appWindow.hide();
-                                    }}
-                                >
-                                    <AiFillCloseCircle className='text-[16px] text-default-400' />
-                                </Button>
-                            </>
+                    {/* Right: service actions + collapse + pin + close */}
+                    <div className='flex gap-1 items-center pr-1 shrink-0'>
+                        {headerButtons}
+                        <Tooltip content={collapsed ? t('translate.expand') : t('translate.collapse')}>
+                            <Button
+                                isIconOnly
+                                size='sm'
+                                variant='light'
+                                className='h-[26px] w-[26px] min-w-0 bg-transparent'
+                                onPress={() => setCollapsed(!collapsed)}
+                            >
+                                {collapsed ? <BiChevronDown className='text-[16px]' /> : <BiChevronUp className='text-[16px]' />}
+                            </Button>
+                        </Tooltip>
+                        <Button
+                            isIconOnly
+                            size='sm'
+                            variant='light'
+                            className='h-[26px] w-[26px] min-w-0 bg-transparent'
+                            onPress={() => {
+                                if (pined) {
+                                    if (closeOnBlur) {
+                                        unlisten = listenBlur();
+                                    }
+                                    appWindow.setAlwaysOnTop(false);
+                                } else {
+                                    unlistenBlur();
+                                    appWindow.setAlwaysOnTop(true);
+                                }
+                                setPined(!pined);
+                            }}
+                        >
+                            <BsPinFill className={`text-[16px] ${pined ? 'text-primary' : 'text-default-400'}`} />
+                        </Button>
+                        {osType !== 'Darwin' && (
+                            <Button
+                                isIconOnly
+                                size='sm'
+                                variant='light'
+                                className='h-[26px] w-[26px] min-w-0 bg-transparent'
+                                onPress={() => {
+                                    void appWindow.hide();
+                                }}
+                            >
+                                <AiFillCloseCircle className='text-[16px] text-default-400' />
+                            </Button>
                         )}
                     </div>
                 </div>
                 <div
                     ref={contentRef}
                     className='px-[6px] pb-[6px] text-[12px] flex flex-col rounded-xl border border-content3 shadow-2xl overflow-hidden'
+                    style={collapsed ? { height: 0, padding: 0, borderWidth: 0, overflow: 'hidden' } : undefined}
                 >
                     {/* Source Area */}
                     <div>

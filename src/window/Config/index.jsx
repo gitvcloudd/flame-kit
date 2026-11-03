@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
 import { MdSystemUpdate } from 'react-icons/md';
-import { HiSun, HiMoon } from 'react-icons/hi';
+import { HiSun, HiMoon, HiDesktopComputer } from 'react-icons/hi';
 
 import WindowControl from '../../components/WindowControl';
 import SideBar from './components/SideBar';
@@ -16,36 +16,40 @@ import { useConfig } from '../../hooks';
 import routes from './routes';
 import './style.css';
 
-// Compact theme toggle for the header
+// Compact theme toggle for the header: light / dark / follow system.
 function HeaderThemeToggle() {
-    const { resolvedTheme, setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = React.useState(false);
     React.useEffect(() => { setMounted(true); }, []);
     if (!mounted) return null;
-    const isDark = resolvedTheme === 'dark';
+    const themeButtonClass = (active) =>
+        `p-1.5 rounded-md transition-all duration-200 ${
+            active
+                ? 'bg-white dark:bg-content3 text-brand-600 dark:text-brand-400 shadow-sm'
+                : 'text-default-400 hover:text-default-600 dark:hover:text-default-300'
+        }`;
     return (
         <div className="flex items-center bg-content2 dark:bg-content2 rounded-lg p-0.5 gap-0.5">
             <button
                 onClick={() => setTheme('light')}
                 title="Light"
-                className={`p-1.5 rounded-md transition-all duration-200 ${
-                    !isDark
-                        ? 'bg-white dark:bg-content3 text-brand-600 shadow-sm'
-                        : 'text-default-400 hover:text-default-600 dark:hover:text-default-300'
-                }`}
+                className={themeButtonClass(theme === 'light')}
             >
                 <HiSun className="text-[15px]" />
             </button>
             <button
                 onClick={() => setTheme('dark')}
                 title="Dark"
-                className={`p-1.5 rounded-md transition-all duration-200 ${
-                    isDark
-                        ? 'bg-content3 text-brand-400 shadow-sm'
-                        : 'text-default-400 hover:text-default-600 dark:hover:text-default-300'
-                }`}
+                className={themeButtonClass(theme === 'dark')}
             >
                 <HiMoon className="text-[15px]" />
+            </button>
+            <button
+                onClick={() => setTheme('system')}
+                title="System"
+                className={themeButtonClass(theme === 'system')}
+            >
+                <HiDesktopComputer className="text-[15px]" />
             </button>
         </div>
     );
