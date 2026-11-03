@@ -126,10 +126,11 @@ pub fn config_window() {
         .unwrap();
     window.set_size(tauri::LogicalSize::new(960, 820)).unwrap();
     window.center().unwrap();
-    // Config window must float above the Monitor overlay and all other windows.
-    // This also prevents the window from being buried on macOS (where the app
-    // runs as Accessory with no Dock icon), making always_on_top the reliable
-    // way to keep the config window reachable.
+    // Always-on-top only on macOS, where the app runs as Accessory with no
+    // Dock icon and the window could otherwise get buried. On Windows/Linux
+    // the config window must behave like a normal window: staying on top of
+    // every other app feels broken there.
+    #[cfg(target_os = "macos")]
     window.set_always_on_top(true).unwrap_or_default();
 
     #[cfg(target_os = "windows")]

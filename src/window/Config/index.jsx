@@ -147,14 +147,13 @@ export default function Config() {
             >
                 {/* Header */}
                 <header className="h-[52px] shrink-0 flex items-center justify-between px-4 border-b border-content3 dark:border-content3">
-                    {/* Drag region for header */}
+                    {/* Page Title: the whole title area drags the window, so the
+                        header behaves like a normal title bar. Buttons stay
+                        outside the drag region to remain clickable. */}
                     <div
                         data-tauri-drag-region="true"
-                        className="absolute top-0 left-[210px] right-0 h-[12px]"
-                    />
-
-                    {/* Page Title */}
-                    <div className="flex items-center gap-3">
+                        className="flex items-center gap-3 flex-1 self-stretch"
+                    >
                         <h1 className="text-[16px] font-heading font-semibold text-foreground">
                             {t(`config.${location.pathname.slice(1).replaceAll('-', '_')}.title`)}
                         </h1>
